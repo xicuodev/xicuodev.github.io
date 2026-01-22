@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://blog.xicuodev.top/2025/12/13/dotnet-logging-3-serilog/</loc>
+    
+    <lastmod>2026-01-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.xicuodev.top/2025/12/12/dotnet-logging-1-introduction/</loc>
+    
+    <lastmod>2026-01-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.xicuodev.top/2025/08/26/cs-common-collections-api/</loc>
+    
+    <lastmod>2026-01-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.xicuodev.top/2025/12/17/dotnet-logging-4-performance/</loc>
+    
+    <lastmod>2026-01-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.xicuodev.top/2025/12/18/dotnet-logging-5-monitoring-and-alerting/</loc>
+    
+    <lastmod>2026-01-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.xicuodev.top/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/</loc>
+    
+    <lastmod>2026-01-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.xicuodev.top/categories/index.html</loc>
+    
+    <lastmod>2026-01-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>https://blog.xicuodev.top/</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+
+  
+  <url>
+    <loc>https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/C-%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/NET%E6%97%A5%E5%BF%97/</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+</urlset>

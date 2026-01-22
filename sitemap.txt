@@ -1,0 +1,13 @@
+https://blog.xicuodev.top/2025/12/13/dotnet-logging-3-serilog/
+https://blog.xicuodev.top/2025/12/12/dotnet-logging-1-introduction/
+https://blog.xicuodev.top/2025/08/26/cs-common-collections-api/
+https://blog.xicuodev.top/2025/12/17/dotnet-logging-4-performance/
+https://blog.xicuodev.top/2025/12/18/dotnet-logging-5-monitoring-and-alerting/
+https://blog.xicuodev.top/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/
+https://blog.xicuodev.top/categories/index.html
+https://blog.xicuodev.top/
+https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/
+https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/
+https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/C-%E5%9F%BA%E7%A1%80/
+https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/
+https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/NET%E6%97%A5%E5%BF%97/

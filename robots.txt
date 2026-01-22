@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Sitemap declarations
+Sitemap: https://blog.xicuodev.top/sitemap.xml
+Sitemap: https://blog.xicuodev.top/sitemap.txt
+Sitemap: https://blog.xicuodev.top/atom.xml
