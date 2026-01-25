@@ -121,6 +121,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     
+        
+        
+        
+            <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+        
+    
     <!--- Seo Part-->
     
     <link rel="canonical" href="https://blog.xicuodev.top/"/>
@@ -157,9 +163,7 @@
         
     </title>
 
-    
-<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Chillax/chillax.css">
 
     <!--- Inject Part-->
     
@@ -169,17 +173,11 @@
 
 
     
-        
-<link rel="stylesheet" href="/css/build/tailwind.css">
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/css/build/tailwind.css">
     
 
-    
-<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
-
-    
-<link rel="stylesheet" href="/fonts/Geist/geist.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fonts/Geist/geist.css">
     <!--- Font Part-->
     
     
@@ -196,18 +194,10 @@
   </script>
     
     <!--- Fontawesome Part-->
-    
-<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/brands.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/solid.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/regular.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/fontawesome/regular.min.css">
     
     
     
@@ -523,7 +513,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -550,7 +540,7 @@
                 <div class="author flex flex-col justify-center my-2.5 mx-0">
     <div class="name">xicuod</div>
     
-        <div class="label">Lv1</div>
+        <div class="label">Lv2</div>
     
 </div>
                 <div class="statistics flex justify-around my-2.5">
@@ -563,7 +553,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -578,6 +568,173 @@
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2026/01/25/dotnet-multithreading-2-synchronization/">
+                            .NET多线程(2)：线程同步
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+共享资源：并发的线程竞争共享资源，造成冲突和资源争抢
+
+非原子操作与原子操作：
+
+非原子操作：可以拆分的操作，如 count++ 实则为先 temp+1 再赋值给 count，缓存天然缺乏时效性，造成不一致行为和竞态条件
+原子操作：不可拆分的操作，调度器不能中断它而去执行其他线程
+
+临界区与线程同步：
+
+临界区 (critical section)：线程中访问共享资源的操作区域，它应该是原...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sun Jan 25 2026 19:41:53 GMT+0800">
+                
+                    2026-01-25
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/">.NET多线程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2026/01/25/dotnet-multithreading-2-synchronization/">阅读全文<span class="seo-reader-text">.NET多线程(2)：线程同步</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2026/01/25/dotnet-multithreading-1-basic/">
+                            .NET多线程(1)：多线程基础
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            这几篇.NET多线程笔记写于2025年11月底-12月初。
+进程、线程与线程调度器
+进程 (process)：一个应用程序包含一个或多个进程，每个进程包含一个或多个线程
+线程 (thread)：线程是CPU工作的基本单位，CPU只能看到一个个线程
+线程调度器 (thread scheduler)：一块CPU核心同一时刻只能执行一条线程，因此需要调度器管理线程的执行
+线程调度器是操作系统的一部...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sun Jan 25 2026 19:37:20 GMT+0800">
+                
+                    2026-01-25
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/">.NET多线程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2026/01/25/dotnet-multithreading-1-basic/">阅读全文<span class="seo-reader-text">.NET多线程(1)：多线程基础</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -639,17 +796,7 @@
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/">.NET框架</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
                         </li>
                     
                     
@@ -726,17 +873,7 @@
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/">.NET框架</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
                         </li>
                     
                     
@@ -820,17 +957,7 @@
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/">.NET框架</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
                         </li>
                     
                     
@@ -909,17 +1036,7 @@ Create静态方法：创建一个...
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/">.NET框架</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
                         </li>
                     
                     
@@ -998,17 +1115,7 @@ LogInformation方法：打印info...
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/">.NET框架</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%A1%86%E6%9E%B6/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
                         </li>
                     
                     
@@ -1141,7 +1248,7 @@ MoveNex...
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 6 篇文章
+                        共撰写了 8 篇文章
                     </span>
                     
                 </p>
@@ -1249,19 +1356,7 @@ MoveNex...
 </main>
 
 
-
-<script src="/js/build/libs/Swup.min.js"></script>
-
-<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
-
-<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
-
-<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
-
-<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
-
-<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
-
+<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Swup.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
 <script>
     const swup = new Swup({
         plugins: [
@@ -1284,54 +1379,27 @@ MoveNex...
 
 
 
-	
-<script src="/js/build/tools/imageViewer.js" type="module"></script>
-
-<script src="/js/build/utils.js" type="module"></script>
-
-<script src="/js/build/main.js" type="module"></script>
-
-<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
-
-<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
-
-<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
-
-<script src="/js/build/layouts/categoryList.js" type="module"></script>
+	<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/utils.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/main.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/categoryList.js" ></script>
 
 
 
 
-
-    
-<script src="/js/build/tools/codeBlock.js" type="module"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/codeBlock.js" ></script>
 
 
 
-
-    
-<script src="/js/build/layouts/lazyload.js" type="module"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/lazyload.js" ></script>
 
 
 
-
-    
-<script src="/js/build/tools/runtime.js"></script>
-
-    
-<script src="/js/build/libs/odometer.min.js"></script>
-
-    
-<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/assets/odometer-theme-minimal.css">
 
 
 
-
-  
-<script src="/js/build/libs/Typed.min.js"></script>
-
-  
-<script src="/js/build/plugins/typed.js" type="module"></script>
+  <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/typed.js" ></script>
 
 
 
@@ -1339,29 +1407,16 @@ MoveNex...
 
 
 
-
-    
-<script src="/js/build/libs/anime.min.js"></script>
+    <script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/anime.min.js" ></script>
 
 
 
 
-
-    
-<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
-
-<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
-
-<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
 
 
-
-
-<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
-
-
-<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
-
+<script  src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/hexo-theme-redefine@2.8.5/source/js/build/layouts/essays.js" data-swup-reload-script></script>
 
 
 

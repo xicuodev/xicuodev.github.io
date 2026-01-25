@@ -129,7 +129,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://blog.xicuodev.top/2025/12/17/dotnet-logging-4-performance/"/>
+    <link rel="canonical" href="https://blog.xicuodev.top/2026/01/25/dotnet-multithreading-1-basic/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -139,14 +139,14 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content=".NET日志(4)：性能优化">
-<meta property="og:url" content="https://blog.xicuodev.top/2025/12/17/dotnet-logging-4-performance/index.html">
+<meta property="og:title" content=".NET多线程(1)：多线程基础">
+<meta property="og:url" content="https://blog.xicuodev.top/2026/01/25/dotnet-multithreading-1-basic/index.html">
 <meta property="og:site_name" content="系错的技术博客">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.xicuodev.top/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-12-17T02:58:20.929Z">
-<meta property="article:modified_time" content="2026-01-25T11:45:59.292Z">
+<meta property="article:published_time" content="2026-01-25T11:37:20.835Z">
+<meta property="article:modified_time" content="2026-01-25T11:45:47.927Z">
 <meta property="article:author" content="xicuod">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.xicuodev.top/images/redefine-og.webp">
@@ -161,7 +161,7 @@
     
     <title>
         
-            .NET日志(4)：性能优化 | XiCuod&#39;s Tech Blog
+            .NET多线程(1)：多线程基础 | XiCuod&#39;s Tech Blog
         
     </title>
 
@@ -452,7 +452,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">.NET日志(4)：性能优化</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">.NET多线程(1)：多线程基础</h1>
 			</div>
 			
 		</div>
@@ -473,15 +473,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-12-17 10:58:20</span>
-        <span class="mobile">2025-12-17 10:58:20</span>
+        <span class="desktop">2026-01-25 19:37:20</span>
+        <span class="mobile">2026-01-25 19:37:20</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-01-25 19:45:59</span>
-            <span class="mobile">2026-01-25 19:45:59</span>
+            <span class="desktop">2026-01-25 19:45:47</span>
+            <span class="mobile">2026-01-25 19:45:47</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -515,7 +515,7 @@
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/">.NET多线程</a>&nbsp;
                         </li>
                     
                     
@@ -544,21 +544,35 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p>日志是一个<strong>切面关注点</strong>，日志的记录会影响整个系统的性能。在程序的<strong>热点路径</strong>上，日志记录的开销可能会显著影响应用程序的响应时间和吞吐量，这些日志必须非常轻量、非常高效。</p>
-<p>使用日志消息模板字符串时，为了结构化日志，每记录一条日志，日志记录器都需要创建这些参数的数组，并对参数装箱（因为是<code>object[]</code>数组）。日志一多，会造成大量内存开销。要优化它，可以使用<code>LoggerMessage.Define</code>方法来预定义日志消息模板，从而避免在每次记录日志时的装箱和数组分配。</p>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> Action&lt;ILogger, <span class="built_in">int</span>, Exception?&gt; _logUserLoggedIn =</span><br><span class="line">    LoggerMessage.Define&lt;<span class="built_in">int</span>&gt;(LogLevel.Information,</span><br><span class="line">      <span class="keyword">new</span> EventId(<span class="number">1</span>, <span class="keyword">nameof</span>(UserLoggedIn)),</span><br><span class="line">      <span class="string">&quot;User &#123;UserId&#125; has logged in.&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">UserLoggedIn</span>(<span class="params"><span class="built_in">int</span> userId</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* 一些业务代码 */</span></span><br><span class="line">  _logUserLoggedIn(_logger, userId, <span class="literal">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<ul>
-<li><code>Action</code>委托使用泛型以<strong>强类型参数</strong>传入（如 <code>int</code>），减少装箱并更易被JIT优化&#x2F;内联。</li>
-<li><code>Define</code>方法内部会对每种不同参数个数的消息模板使用特定<strong>格式化器</strong>，避免了数组分配。</li>
-<li><code>&quot;User {UserId} has logged in.&quot;</code>是一个编译时常量，会在内存中驻留（interned）。</li>
+			<p>这几篇.NET多线程笔记写于2025年11月底-12月初。</p>
+<h2 id="进程、线程与线程调度器"><a href="#进程、线程与线程调度器" class="headerlink" title="进程、线程与线程调度器"></a>进程、线程与线程调度器</h2><ul>
+<li>进程 (process)：一个应用程序包含一个或多个进程，每个进程包含一个或多个线程</li>
+<li>线程 (thread)：线程是CPU工作的基本单位，CPU只能看到一个个线程</li>
+<li>线程调度器 (thread scheduler)：一块CPU核心同一时刻只能执行一条线程，因此需要调度器管理线程的执行<ul>
+<li>线程调度器是操作系统的一部分，应用程序开发者不可控制</li>
 </ul>
-<p>这种写法比较繁琐，要解决这个问题，使用<strong>Source Generator</strong>（源代码生成器，由<code>Microsoft.Extensions.Logging.Generators</code>提供）在编译时生成代码，你只需使用<code>LoggerMessage</code>注解声明<code>ILogger</code>的扩展方法：</p>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">LoggerExtensions</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">LoggerMessage(EventId = 1, Level = LogLevel.Information, Message = <span class="string">&quot;User &#123;UserId&#125; has logged in.&quot;</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">partial</span> <span class="keyword">void</span> <span class="title">LogUserLoggedIn</span>(<span class="params"><span class="keyword">this</span> ILogger logger, <span class="built_in">int</span> userId</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>通过阅读<code>LoggerMessage</code>注解，Source Generator会生成类似上面使用<code>LoggerMessage.Define</code>的代码，从而实现性能优化，同时让开发体验更好。</p>
-<p>使用时，可以直接调用<code>LogUserLoggedIn</code>扩展方法：</p>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">UserLoggedIn</span>(<span class="params"><span class="built_in">int</span> userId</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/* 一些业务代码 */</span></span><br><span class="line">  _logger.LogUserLoggedIn(userId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li>时间片：由操作系统分配的每个线程一次占据CPU的时间，每轮每条线程的时间片执行完后重新分配</li>
+</ul>
+<p>主线程与工作线程：</p>
+<ul>
+<li>主线程：每个应用进程至少有一个主线程</li>
+<li>工作线程：应用进程中主线程之外的其他线程</li>
+</ul>
+<p>单线程进程与多线程进程：</p>
+<ul>
+<li>单线程进程：只有一个主线程的进程</li>
+<li>多线程进程：拥有一个主线程和多个工作线程的进程</li>
+</ul>
+<h2 id="为什么要使用多线程？"><a href="#为什么要使用多线程？" class="headerlink" title="为什么要使用多线程？"></a>为什么要使用多线程？</h2><ul>
+<li>并发：对于多核的CPU，同一时刻会有多条线程在不同的CPU核心上并发地执行<ul>
+<li>单核CPU没有真正的并发，它的多任务场景只是极快速地交替执行多个线程</li>
+</ul>
+</li>
+<li>多线程实现“分而治之” (divide and conquer)：把数组的累加工作分成多份，交给不同的线程完成</li>
+<li>阻塞：使用<code>Join</code>方法，让被调线程阻塞主调线程，直到阻塞队列执行完毕，主调线程才能继续执行</li>
+<li>用工作线程卸载 (offload) 长时间运行的任务：否则它将阻塞主线程（在GUI应用中就是UI线程，从而导致UI长时间未响应，对用户不友好）</li>
+</ul>
 
 		</div>
 
@@ -566,18 +580,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> .NET日志(4)：性能优化</li>
+        <li><strong>标题:</strong> .NET多线程(1)：多线程基础</li>
         <li><strong>作者:</strong> xicuod</li>
         <li><strong>创建于
-                :</strong> 2025-12-17 10:58:20</li>
+                :</strong> 2026-01-25 19:37:20</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-01-25 19:45:59
+                    :</strong> 2026-01-25 19:45:47
             </li>
         
         <li>
-            <strong>链接:</strong> https://blog.xicuodev.top/2025/12/17/dotnet-logging-4-performance/
+            <strong>链接:</strong> https://blog.xicuodev.top/2026/01/25/dotnet-multithreading-1-basic/
         </li>
         <li>
             <strong>
@@ -603,12 +617,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/12/18/dotnet-logging-5-monitoring-and-alerting/">
+				<a class="prev" rel="prev" href="/2026/01/25/dotnet-multithreading-2-synchronization/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">.NET日志(5)：监控与告警</span>
+						<span class="post-nav-title-item truncate max-w-48">.NET多线程(2)：线程同步</span>
 						<span class="post-nav-item">上一篇</span>
 					</span>
 				</a>
@@ -616,9 +630,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/12/13/dotnet-logging-3-serilog/">
+				<a class="next" rel="next" href="/2025/12/18/dotnet-logging-5-monitoring-and-alerting/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">.NET日志(3)：Serilog</span>
+						<span class="post-nav-title-item truncate max-w-48">.NET日志(5)：监控与告警</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -697,8 +711,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">.NET日志(4)：性能优化</div>
-		
+		<div class="page-title">.NET多线程(1)：多线程基础</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E3%80%81%E7%BA%BF%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="nav-text">进程、线程与线程调度器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="nav-text">为什么要使用多线程？</span></a></li></ol>
 
 	</div>
 </div>
