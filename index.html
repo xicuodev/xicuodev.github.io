@@ -513,7 +513,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -553,7 +553,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -568,6 +568,172 @@
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2026/01/26/dotnet-multithreading-4-safety/">
+                            .NET多线程(4)：线程安全
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            线程亲和性 Thread Affinity
+在工作线程中访问主线程中的资源时，需要同步上下文
+主线程中的资源一般会提供Invoke方法
+Invoke方法：传递委托，委托的方法体上下文就是同步上下文
+InvokeRequired属性：是否需要调用Invoke方法；如果方法是在主线程调用，那么就不能用Invoke方法
+
+线程安全 Thread Safety当一个函数、数据结构或类可以被多个线程并...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Jan 26 2026 12:08:04 GMT+0800">
+                
+                    2026-01-26
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/">.NET多线程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2026/01/26/dotnet-multithreading-4-safety/">阅读全文<span class="seo-reader-text">.NET多线程(4)：线程安全</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2026/01/26/dotnet-multithreading-3-interaction/">
+                            .NET多线程(3)：线程交互
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            信号量 Semaphore
+信号量主要用于控制并发线程或进程（指定名称）的个数，一般不用于保护临界区
+SemaphoreSlim类（Semaphore类的精简版，没有跨进程功能，后者有）
+参数：initialCount：初始个数；maxCount：最大个数；倒计数，每次获取时减1
+
+
+Wait方法：获取一个信号量，如果信号量不足，则阻塞
+Release方法：释放一个信号量
+Wait和Rele...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Jan 26 2026 11:51:03 GMT+0800">
+                
+                    2026-01-26
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/">.NET多线程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2026/01/26/dotnet-multithreading-3-interaction/">阅读全文<span class="seo-reader-text">.NET多线程(3)：线程交互</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -1248,7 +1414,7 @@ MoveNex...
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 8 篇文章
+                        共撰写了 10 篇文章
                     </span>
                     
                 </p>

@@ -6,7 +6,7 @@
   <link href="https://blog.xicuodev.top/atom.xml" rel="self"/>
   
   <link href="https://blog.xicuodev.top/"/>
-  <updated>2026-01-25T12:53:28.880Z</updated>
+  <updated>2026-01-26T04:47:02.896Z</updated>
   <id>https://blog.xicuodev.top/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>.NET多线程(4)：线程安全</title>
+    <link href="https://blog.xicuodev.top/2026/01/26/dotnet-multithreading-4-safety/"/>
+    <id>https://blog.xicuodev.top/2026/01/26/dotnet-multithreading-4-safety/</id>
+    <published>2026-01-26T04:08:04.397Z</published>
+    <updated>2026-01-26T04:47:02.896Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="线程亲和性-Thread-Affinity"><a href="#线程亲和性-Thread-Affinity" class="headerlink" title="线程亲和性 Thread Affinity"></a>线程亲和性 Thread Affinity</h2><ul><li>在工作线程中访问主线程中的资源时，需要同步上下文</li><li>主线程中的资源一般会提供<code>Invoke</code>方法</li><li><code>Invoke</code>方法：传递委托，委托的方法体上下文就是同步上下文</li><li><code>InvokeRequired</code>属性：是否需要调用<code>Invoke</code>方法；如果方法是在主线程调用，那么就不能用<code>Invoke</code>方法</li></ul><h2 id="线程安全-Thread-Safety"><a href="#线程安全-Thread-Safety" class="headerlink" title="线程安全 Thread Safety"></a>线程安全 Thread Safety</h2><p>当一个函数、数据结构或类可以被多个线程并发使用，而不会产生竞态条件、不一致行为或数据损坏时，它就是线程安全的。</p><ul><li>线程安全的语法实体内部已经使用了适当的同步机制，使用它们时不需要另外采取线程同步措施。</li></ul><h2 id="线程的生命周期"><a href="#线程的生命周期" class="headerlink" title="线程的生命周期"></a>线程的生命周期</h2><p>线程的生命周期开始于 <code>System.Threading.Thread</code>类的实例被创建时，结束于线程被终止或执行完成时。</p><ul><li>未启动状态：当线程实例被创建，但<code>Start</code>方法未被调用时</li><li>就绪状态：当线程准备好运行，并等待CPU周期时</li><li>不可运行状态：调用了<code>Sleep</code>方法；调用了<code>Wait</code>方法；通过I&#x2F;O操作阻塞</li><li>死亡状态：当线程已经执行完毕，或已经终止时</li></ul><h2 id="让线程等待一段时间"><a href="#让线程等待一段时间" class="headerlink" title="让线程等待一段时间"></a>让线程等待一段时间</h2><ul><li><code>Thread.Sleep(毫秒数)</code>：线程将被调度器踢出CPU，为不可运行状态，即<code>WaitSleepJoin</code>状态</li><li><code>Thread.SpinWait(次数)</code>：相当于<code>for</code>循环，线程会被保持在CPU内，只是繁忙等待；但如果占用CPU时间太长，超过分配时间片，仍会被调度器踢出</li><li><code>SpinWait.SpinUntil(条件,超时毫秒数)</code>：繁忙等待，直到满足条件或超时</li><li>后两种方法谨慎使用，小心耗尽CPU资源</li></ul><h2 id="从线程中返回结果"><a href="#从线程中返回结果" class="headerlink" title="从线程中返回结果"></a>从线程中返回结果</h2><ul><li><code>Thread</code>类没有内置的方法返回结果，更好的选择是<code>Task</code>类</li><li><code>Thread</code>类返回结果的唯一方式是共享变量</li></ul><h2 id="线程取消-Thread-Cancellation"><a href="#线程取消-Thread-Cancellation" class="headerlink" title="线程取消 Thread Cancellation"></a>线程取消 Thread Cancellation</h2><ul><li>设置一个共享的标志变量，如 bool cancelThread</li><li>更好的做法：CancellationTokenSource类，详见任务取消</li></ul><h2 id="线程池-Thread-Pool"><a href="#线程池-Thread-Pool" class="headerlink" title="线程池 Thread Pool"></a>线程池 Thread Pool</h2><ul><li>创建和释放线程需要时间和空间，每次都创建新的性能很差</li><li>每个应用程序都有一个线程池，并定义了最大和最小线程数</li></ul><p>线程池的行为：</p><ul><li>达到最小值之前，每次都创建新线程</li><li>达到最小值之后，每次用空闲的，只有都繁忙，才创建新线程</li><li>达到最大值之后，如果都繁忙，只能排队等待空闲线程</li></ul><h2 id="工作线程的异常处理"><a href="#工作线程的异常处理" class="headerlink" title="工作线程的异常处理"></a>工作线程的异常处理</h2><ul><li>每个线程都有自己的调用堆栈，工作线程抛出的异常永远不会到达主线程</li><li>简单的做法是在工作线程内使用<code>try-catch</code>块，并自行处理</li><li>更好的做法是使用共享资源，创建一个异常列表 <code>List&lt;Exception&gt;</code>，在工作线程中<code>catch</code>异常并将其加入列表，并在主线程统一处理</li><li>更更好的做法是使用<code>Task</code>类，它有内置的异常处理机制</li></ul>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;线程亲和性-Thread-Affinity&quot;&gt;&lt;a href=&quot;#线程亲和性-Thread-Affinity&quot; class=&quot;headerlink&quot; title=&quot;线程亲和性 Thread Affinity&quot;&gt;&lt;/a&gt;线程亲和性 Thread</summary>
+        
+      
+    
+    
+    
+    <category term="编程" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    <category term="C#技术栈" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    
+    <category term=".NET多线程" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>.NET多线程(3)：线程交互</title>
+    <link href="https://blog.xicuodev.top/2026/01/26/dotnet-multithreading-3-interaction/"/>
+    <id>https://blog.xicuodev.top/2026/01/26/dotnet-multithreading-3-interaction/</id>
+    <published>2026-01-26T03:51:03.808Z</published>
+    <updated>2026-01-26T04:07:56.400Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="信号量-Semaphore"><a href="#信号量-Semaphore" class="headerlink" title="信号量 Semaphore"></a>信号量 <code>Semaphore</code></h2><ul><li>信号量主要用于控制并发线程或进程（指定名称）的个数，一般不用于保护临界区</li><li><code>SemaphoreSlim</code>类（<code>Semaphore</code>类的精简版，没有跨进程功能，后者有）<ul><li>参数：<code>initialCount</code>：初始个数；<code>maxCount</code>：最大个数；倒计数，每次获取时减1</li></ul></li><li><code>Wait</code>方法：获取一个信号量，如果信号量不足，则阻塞</li><li><code>Release</code>方法：释放一个信号量</li><li><code>Wait</code>和<code>Release</code>不必在同一线程中（信号量不具有线程亲和性）</li><li><code>SemaphoreSlim</code>对象使用非托管资源，使用<code>using</code>避免内存泄漏</li><li>在Web服务器示例中，在请求队列的监控线程获取信号量，并在请求处理线程释放信号量，实现有限个监控线程并发（这里信号量不用于保护临界区，因此别忘了给入队出队的逻辑加写锁）</li></ul><h2 id="自动重置事件-AutoResetEvent"><a href="#自动重置事件-AutoResetEvent" class="headerlink" title="自动重置事件 AutoResetEvent"></a>自动重置事件 <code>AutoResetEvent</code></h2><ul><li>自动重置事件用于信号传递（Signaling）</li><li>典型应用：生产者-消费者场景<ul><li>生产者线程生产了足够资源时，向消费者线程传递布尔类型信号</li><li>如果生产者足够快，消费者线程就能并发</li><li>但如果生产者过于快，就会造成资源浪费，为此你需要把产品放入队列中</li></ul></li><li>构造器参数：<code>bool initialState</code>：初始状态，如果初始时已经有资源，可以设为<code>true</code></li><li><code>WaitOne</code>方法：等待信号，阻塞</li><li><code>Set</code>方法：设置信号</li><li><code>AutoResetEvent</code>对象使用非托管资源，使用<code>using</code>避免内存泄漏</li></ul><h2 id="手动重置事件-ManualResetEvent"><a href="#手动重置事件-ManualResetEvent" class="headerlink" title="手动重置事件 ManualResetEvent"></a>手动重置事件 <code>ManualResetEvent</code></h2><ul><li>在自动重置事件中，一旦有线程持有信号，信号将自动重置；而在手动重置事件中，你需要调用<code>Reset</code>方法手动重置信号</li><li>典型应用：在分治法中，每次都需要多个工作线程并发运行</li></ul>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;信号量-Semaphore&quot;&gt;&lt;a href=&quot;#信号量-Semaphore&quot; class=&quot;headerlink&quot; title=&quot;信号量 Semaphore&quot;&gt;&lt;/a&gt;信号量</summary>
+        
+      
+    
+    
+    
+    <category term="编程" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    <category term="C#技术栈" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    
+    <category term=".NET多线程" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>.NET多线程(2)：线程同步</title>
