@@ -513,7 +513,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -553,7 +553,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -568,6 +568,337 @@
 			<div class="main-content">
 				<div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2026/01/27/dotnet-multithreading-8-concurrent-data-structures/">
+                            .NET多线程(8)：并发数据结构
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            并发栈 ConcurrentStack
+并发数据结构为多线程设计，内部支持线程同步（是线程安全的），不必自己加锁
+可以像使用常规栈那样使用并发栈，但出栈时只能用TryPop方法
+其他并发数据结构大同小异，它们都实现为生产消费量身定制的IProducerConsumerCollection&lt;T&gt;接口，不做赘述
+
+阻塞集合 BlockingCollection
+阻塞集合是个包装器，用...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Jan 27 2026 18:27:25 GMT+0800">
+                
+                    2026-01-27
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/">.NET多线程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2026/01/27/dotnet-multithreading-8-concurrent-data-structures/">阅读全文<span class="seo-reader-text">.NET多线程(8)：并发数据结构</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2026/01/27/dotnet-multithreading-7-plinq/">
+                            .NET多线程(7)：并行LINQ（PLINQ）
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+集合的数据量非常庞大时，适合使用并行LINQ（PLINQ）
+AsParallel方法：获取集合的ParallelQuery对象，然后就可以像使用一般LINQ一样使用PLINQ，如items.AsParallel().Where(...)
+ParallelQuery的AsOrdered方法：在并行处理的同时保持顺序，这肯定会降低性能，但重要的是搞清楚你的需求
+ParallelQuery的Fo...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Jan 27 2026 18:18:48 GMT+0800">
+                
+                    2026-01-27
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/">.NET多线程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2026/01/27/dotnet-multithreading-7-plinq/">阅读全文<span class="seo-reader-text">.NET多线程(7)：并行LINQ（PLINQ）</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2026/01/27/dotnet-multithreading-6-parallel-loop/">
+                            .NET多线程(6)：并行循环
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            
+并行循环（parallel loop）：Parallel.For(int 起点含, int 终点不含, Action 循环体委托)
+这将在不同线程中共享循环体的资源，你需要上锁实现同步访问
+For：有序集合；ForEach：无序集合+有序集合
+Parallel.Invoke(委托集合)：并行运行委托集合的所有方法
+循环任务必须足够繁重（串行性能非常差），才适合并行循环
+
+并行循环的原理
+数...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Jan 27 2026 18:07:00 GMT+0800">
+                
+                    2026-01-27
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/">.NET多线程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2026/01/27/dotnet-multithreading-6-parallel-loop/">阅读全文<span class="seo-reader-text">.NET多线程(6)：并行循环</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2026/01/27/dotnet-multithreading-5-asynchronous/">
+                            .NET多线程(5)：异步编程
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            多线程 vs. 异步编程
+多线程与异步编程二者本质上相同，只是侧重点不同
+多线程侧重于分而治之的场景，异步编程侧重于卸载长时间运行的任务（详见为什么要使用多线程）
+多线程适用于CPU密集型操作，异步编程适用于I&#x2F;O密集型操作
+I&#x2F;O操作：访问本地文件、访问数据库、访问互联网
+
+Task类
+构造器：new Task(委托)
+Start方法
+更常见的写法：var task =...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Jan 27 2026 17:40:19 GMT+0800">
+                
+                    2026-01-27
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/">.NET多线程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2026/01/27/dotnet-multithreading-5-asynchronous/">阅读全文<span class="seo-reader-text">.NET多线程(5)：异步编程</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -1056,337 +1387,11 @@ Wait和Rele...
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/12/13/dotnet-logging-3-serilog/">
-                            .NET日志(3)：Serilog
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            无论是作用域、IsEnabled、格式化或消息模板的概念，还是结构化日志记录，Serilog都是这些功能的开创者和标准化者。
-
-对消息模板、结构化日志、参数解析等都有极佳的支持。
-庞大的Sinks家族：Serilog的Sinks就相当于Logging中的Provider，而Serilog的Sinks可能有几十个甚至上百个。
-
-创建Serilog日志记录器
-引入Serilog包
-
-1var l...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Dec 13 2025 10:00:00 GMT+0800">
-                
-                    2025-12-13
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2025/12/13/dotnet-logging-3-serilog/">阅读全文<span class="seo-reader-text">.NET日志(3)：Serilog</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/">
-                            .NET日志(2)：Microsoft.Extensions.Logging包
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            ILogger并不是一个BCL（Basic Class Library，基础类库）接口，而是来自于Microsoft.Extensions.Logging包。如果你是一个类库作者，你可以引用Microsoft.Extensions.Logging.Abstraction抽象依赖，因为开发类库通常用不上这些具体实现。
-
-LoggerFactory日志记录器工厂：
-Create静态方法：创建一个...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Dec 12 2025 09:49:43 GMT+0800">
-                
-                    2025-12-12
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/">阅读全文<span class="seo-reader-text">.NET日志(2)：Microsoft.Extensions.Logging包</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/12/12/dotnet-logging-1-introduction/">
-                            .NET日志(1)：概论
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            日志类别 Log Category日志类别只是一种逻辑方式，用于将不同的日志条目归类到某种统一的分组下。例如，如果你正在运行一个API，微软会将其自身的所有日志归类在Microsoft.Asp.Core这个类别或分组下，你也可以控制自己的日志类别。
-
-ILogger&lt;类&gt;：通常是当前类，如ILogger&lt;Program&gt;
-LogInformation方法：打印info...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Dec 12 2025 09:16:40 GMT+0800">
-                
-                    2025-12-12
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2025/12/12/dotnet-logging-1-introduction/">阅读全文<span class="seo-reader-text">.NET日志(1)：概论</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2025/08/26/cs-common-collections-api/">
-                            C#常见集合接口
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            下面只列出泛型接口，没有泛型的版本的接口处理数据的逻辑差不多，只是需要装拆箱。
-
-IEnumerable&lt;TItem&gt;：可迭代、可枚举类型
-GetEnumerator 方法：获取迭代器&#x2F;枚举器
-
-
-IEnumerator&lt;TItem&gt;：枚举器，初始不指向任何元素，要调用一次MoveNext方法启动枚举器
-Current属性：当前元素，只get
-MoveNex...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Tue Aug 26 2025 15:11:00 GMT+0800">
-                
-                    2025-08-26
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/C-%E5%9F%BA%E7%A1%80/">C#基础</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2025/08/26/cs-common-collections-api/">阅读全文<span class="seo-reader-text">C#常见集合接口</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
         <div class="paginator">
-	<span class="page-number current">1</span>
+	<span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa-regular fa-angle-right"></i></a>
 </div>
   
     </div>
@@ -1414,7 +1419,7 @@ MoveNex...
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 10 篇文章
+                        共撰写了 14 篇文章
                     </span>
                     
                 </p>

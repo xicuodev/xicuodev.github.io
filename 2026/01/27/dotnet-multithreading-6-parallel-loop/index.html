@@ -129,7 +129,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://blog.xicuodev.top/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/"/>
+    <link rel="canonical" href="https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-6-parallel-loop/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -139,14 +139,14 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content=".NET日志(2)：Microsoft.Extensions.Logging包">
-<meta property="og:url" content="https://blog.xicuodev.top/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/index.html">
+<meta property="og:title" content=".NET多线程(6)：并行循环">
+<meta property="og:url" content="https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-6-parallel-loop/index.html">
 <meta property="og:site_name" content="系错的技术博客">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.xicuodev.top/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-12-12T01:49:43.616Z">
-<meta property="article:modified_time" content="2026-01-25T11:46:11.559Z">
+<meta property="article:published_time" content="2026-01-27T10:07:00.143Z">
+<meta property="article:modified_time" content="2026-01-27T10:18:41.771Z">
 <meta property="article:author" content="xicuod">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.xicuodev.top/images/redefine-og.webp">
@@ -161,7 +161,7 @@
     
     <title>
         
-            .NET日志(2)：Microsoft.Extensions.Logging包 | XiCuod&#39;s Tech Blog
+            .NET多线程(6)：并行循环 | XiCuod&#39;s Tech Blog
         
     </title>
 
@@ -452,7 +452,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">.NET日志(2)：Microsoft.Extensions.Logging包</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">.NET多线程(6)：并行循环</h1>
 			</div>
 			
 		</div>
@@ -473,15 +473,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-12-12 09:49:43</span>
-        <span class="mobile">2025-12-12 09:49:43</span>
+        <span class="desktop">2026-01-27 18:07</span>
+        <span class="mobile">2026-01-27 18:07</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-01-25 19:46:11</span>
-            <span class="mobile">2026-01-25 19:46:11</span>
+            <span class="desktop">2026-01-27 18:18:41</span>
+            <span class="mobile">2026-01-27 18:18:41</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -515,7 +515,7 @@
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/">.NET多线程</a>&nbsp;
                         </li>
                     
                     
@@ -544,146 +544,63 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p><code>ILogger</code>并不是一个BCL（Basic Class Library，基础类库）接口，而是来自于<code>Microsoft.Extensions.Logging</code>包。如果你是一个类库作者，你可以引用<code>Microsoft.Extensions.Logging.Abstraction</code>抽象依赖，因为开发类库通常用不上这些具体实现。</p>
-<ul>
-<li><code>LoggerFactory</code>日志记录器工厂：<ul>
-<li><code>Create</code>静态方法：创建一个工厂</li>
-<li><code>CreateLogger&lt;&gt;</code>方法：创建一个日志记录器</li>
+			<ul>
+<li>并行循环（parallel loop）：<code>Parallel.For(int 起点含, int 终点不含, Action 循环体委托)</code></li>
+<li>这将在不同线程中共享循环体的资源，你需要上锁实现同步访问</li>
+<li><code>For</code>：有序集合；<code>ForEach</code>：无序集合+有序集合</li>
+<li><code>Parallel.Invoke(委托集合)</code>：并行运行委托集合的所有方法</li>
+<li>循环任务必须足够繁重（串行性能非常差），才适合并行循环</li>
+</ul>
+<h2 id="并行循环的原理"><a href="#并行循环的原理" class="headerlink" title="并行循环的原理"></a>并行循环的原理</h2><ul>
+<li>数据分区：分治法，把集合分成特定个部分，并创建等量的线程</li>
+<li>主要使用线程池线程</li>
+<li>试图替开发者做出最佳决策</li>
+<li>阻塞调用，不需要<code>Wait</code></li>
+</ul>
+<h2 id="并行循环的异常处理"><a href="#并行循环的异常处理" class="headerlink" title="并行循环的异常处理"></a>并行循环的异常处理</h2><ul>
+<li>如果有任何一个线程出现异常，则所有线程不会进入下一次迭代</li>
+<li>所有异常将组合为一个<code>AggregateException</code>抛出，在并行循环外部<code>try-catch</code></li>
+<li>并行任务通常都会将所有线程的异常组合为一个聚合异常抛出</li>
+<li>如果每次迭代的耗时较长，当一个线程异常时，你想要立即停止其他线程，可以使用两个参数的委托的重载，第二个参数就是并行循环的当前状态，其<code>IsExceptional</code>属性指出了是否有线程出现异常，以便快速退出本次迭代</li>
+</ul>
+<h2 id="并行循环的主动干预"><a href="#并行循环的主动干预" class="headerlink" title="并行循环的主动干预"></a>并行循环的主动干预</h2><ul>
+<li>状态的<code>Stop</code>方法和<code>IsStopped</code>属性配合使用，可以主动停止各线程</li>
+<li>状态的<code>Break</code>方法和<code>ShouldExitCurrentIteration</code>（应该退出当前迭代）、<code>LowestBreakIteration</code>（<code>Break</code>的线程中最小的迭代位置）属性配合使用，可以使整体集合完整迭代到特定位置停止：<ul>
+<li><code>if (state.ShouldExitCurrentIteration &amp;&amp; state.LowestBreakIteration &lt; i) return;</code></li>
 </ul>
 </li>
 </ul>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LoggerFactory.Create(builder =&gt; &#123; builder.AddConsole(); &#125;);</span><br><span class="line">ILogger logger = loggerFactory.CreateLogger&lt;Program&gt;();</span><br></pre></td></tr></table></figure></div>
-
-<ul>
-<li><code>ILogger</code>日志记录器：<ul>
-<li><code>Log</code>方法：<code>logLevel</code>, <code>eventId</code>（<a href="#%E6%97%A5%E5%BF%97%E4%BA%8B%E4%BB%B6ID">事件ID</a>）, <code>message</code></li>
-<li><code>LogInformation</code>等扩展方法：封装<code>Log</code>方法，常用</li>
+<h2 id="Break方法怎么使并行循环“完整地”迭代到特定进度？"><a href="#Break方法怎么使并行循环“完整地”迭代到特定进度？" class="headerlink" title="Break方法怎么使并行循环“完整地”迭代到特定进度？"></a><code>Break</code>方法怎么使并行循环“完整地”迭代到特定进度？</h2><ul>
+<li>0到100遍历，分成3个线程：0-33、33-66、66-100</li>
+<li>线程1到30、线程2到<code>60</code>、线程3到<code>90</code>时，线程2和3的状态调用<code>Break</code>，它们立即退出，此时<code>ShouldExitCurrentIteration</code>为<code>true</code>， <code>LowestBreakIteration</code>为<code>60</code></li>
+<li>线程1的<code>i</code>&#x3D;<code>30</code>&lt;<code>LowestBreakIteration</code>，所以它继续执行直到完成</li>
+<li>最后，整体迭代进度停留在<code>60</code></li>
+</ul>
+<h2 id="为什么Break时选用LowestBreakIteration？"><a href="#为什么Break时选用LowestBreakIteration？" class="headerlink" title="为什么Break时选用LowestBreakIteration？"></a>为什么<code>Break</code>时选用<code>LowestBreakIteration</code>？</h2><ul>
+<li><code>Break</code>的线程将立即退出，这意味着该线程负责的部分永远无法迭代完成</li>
+<li>最小的迭代位置 (<code>LowestBreakIteration</code>) 意味着负责它前面那些部分的线程没有<code>Break</code></li>
+<li>等到这些线程完成迭代，整体迭代进度到达最小迭代位置</li>
+<li>这是符合<code>Break</code>语义的：<code>迭代到65退出 &amp;&amp; 迭代到80退出 == 迭代到65退出</code>，<code>65</code>是最小迭代位置</li>
+</ul>
+<h2 id="并行循环结果-ParallelLoopResult"><a href="#并行循环结果-ParallelLoopResult" class="headerlink" title="并行循环结果 ParallelLoopResult"></a>并行循环结果 ParallelLoopResult</h2><ul>
+<li>当你接收并行循环返回的结果时，它是阻塞的</li>
+<li><code>IsCompleted</code>属性：是否迭代完成</li>
+<li><code>LowestBreakIteration</code>属性：<code>Break</code>的线程中最小的迭代位置；如果是因为<code>Stop</code>或抛出异常停止迭代，则它的值为<code>null</code></li>
+</ul>
+<h2 id="并行循环取消"><a href="#并行循环取消" class="headerlink" title="并行循环取消"></a>并行循环取消</h2><ul>
+<li>使用<code>ParallelOptions</code>和<code>CancellationTokenSource</code>类</li>
+<li><code>new ParallelOptions { CancellationToken = cts.Token }</code></li>
+<li><code>Parallel.For(0, 1000, options, 循环体委托)</code></li>
+<li>当调用<code>token.Cancel()</code>时，<code>Parallel.For</code>抛出<code>TaskCanceledException</code></li>
+</ul>
+<h2 id="并行循环中的线程本地存储"><a href="#并行循环中的线程本地存储" class="headerlink" title="并行循环中的线程本地存储"></a>并行循环中的线程本地存储</h2><ul>
+<li>线程本地存储（thread local storage）：每个线程自己内部使用的变量；分治法</li>
+<li><code>Parallel.For(0, 100, lcoalInit, (i,state,tls)=&gt;{}, localFinally)</code><ul>
+<li><code>localInit</code>参数：委托，初始化<code>tls</code>并返回</li>
+<li><code>localFinally</code>参数：委托，线程完成枚举时处理<code>tls</code>，依然是线程的一部分，使用共享资源时需要加锁同步</li>
 </ul>
 </li>
 </ul>
-<h2 id="结构化日志记录-语义化日志记录"><a href="#结构化日志记录-语义化日志记录" class="headerlink" title="结构化日志记录&#x2F;语义化日志记录"></a>结构化日志记录&#x2F;语义化日志记录</h2><p>不要使用字符串拼接、模板字符串或格式字符串来传递日志消息，这会导致具体的参数值“烘焙”到日志消息中，从而丢失<code>OriginalFormat</code>（原始格式）。我们希望捕获上下文、作用域、细节和信息，而这正是消息模板字符串和“结构化日志记录”所解决的问题。</p>
-<ul>
-<li><code>Microsoft.Extensions.Logging.Console</code>：<ul>
-<li><code>ILoggingBuilder.AddJsonConsole</code>方法：控制台输出结构化的JSON日志</li>
-</ul>
-</li>
-</ul>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">var</span> loggerFactory = LoggerFactory.Create(builder =&gt; &#123; builder.AddJsonConsole(); &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> logger = loggerFactory.CreateLogger&lt;Program&gt;();</span><br><span class="line"></span><br><span class="line">logger.LogInformation(<span class="string">&quot;Hello World! It is &#123;At&#125;.&quot;</span>, DateTime.UtcNow);</span><br><span class="line"></span><br><span class="line"><span class="comment">//&#123;&quot;EventId&quot;:0,&quot;LogLevel&quot;:&quot;Information&quot;,&quot;Category&quot;:&quot;Program&quot;,&quot;Message&quot;:&quot;Hello World! It is 12/12/2025 02:17:20.&quot;,&quot;State&quot;:&#123;&quot;Message&quot;:&quot;Hello World! It is 12/12/2025 02:17:20.&quot;,&quot;At&quot;:&quot;12/12/2025 02:17:20&quot;,&quot;&#123;OriginalFormat&#125;&quot;:&quot;Hello World! It is &#123;At&#125;.&quot;&#125;&#125;</span></span><br></pre></td></tr></table></figure></div>
-
-<h2 id="日志类别约定"><a href="#日志类别约定" class="headerlink" title="日志类别约定"></a>日志类别约定</h2><p>日志类别通常约定为注入或使用<code>ILogger&lt;类&gt;</code>的类名。从.NET 6开始，任何自动的依赖注入服务都不会自动注入非泛型的<code>ILogger</code>。</p>
-<h2 id="日志级别约定"><a href="#日志级别约定" class="headerlink" title="日志级别约定"></a>日志级别约定</h2><p>默认情况下，无论是JSON控制台还是普通控制台，它们的最低日志级别都是<code>Information</code>，这意味着它们会完全忽略<code>Debug</code>或<code>Trace</code>级别的日志。</p>
-<ul>
-<li>要设置最低日志级别，使用<code>ILoggingBuilder.SetMinimumLevel</code>方法：</li>
-</ul>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">builder.SetMinimumLevel(LogLevel.Trace);</span><br></pre></td></tr></table></figure></div>
-
-<p>在现代应用程序中，尤其是ASP.NET Core中，这类配置通常会集中放在相应的<code>appsettings.json</code>文件中，或你正在使用的其他配置提供程序中。这会自动配置最低日志级别，无需在代码中手动配置。</p>
-<h2 id="日志事件ID"><a href="#日志事件ID" class="headerlink" title="日志事件ID"></a>日志事件ID</h2><p>事件ID用于给一种类型的事件打标签，一个ID代表一种事件。</p>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.LogInformation(<span class="number">233</span>, <span class="string">&quot;ID为233的事件发生了。&quot;</span>);</span><br></pre></td></tr></table></figure></div>
-
-<p>非常常见的一种做法是，人们会创建一个事件类，用于集中放置事件ID：</p>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">LogEvents</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">const</span> <span class="built_in">int</span> SomeEvent = <span class="number">233</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>现代结构化日志框架有很多为日志打标签的替代方案，然而事件ID仍是一个非常强大的工具。</p>
-<h2 id="主机应用-Host"><a href="#主机应用-Host" class="headerlink" title="主机应用 Host"></a>主机应用 Host</h2><p>主机通常需要长时间运行，并为客户提供服务，适用于后台工作进程，常见于Web框架。要在非主机控制台应用中使用主机，引入<code>Microsoft.Extensions.Hosting</code>包。</p>
-<p><code>Logging</code>包提供主机<code>IHost</code>的<code>ConfigureLogging</code>扩展方法，接收<code>ILoggingBuilder</code>，从而为主机配置日志服务。</p>
-<h2 id="自定义ILogger日志记录器与Provider日志提供程序"><a href="#自定义ILogger日志记录器与Provider日志提供程序" class="headerlink" title="自定义ILogger日志记录器与Provider日志提供程序"></a>自定义ILogger日志记录器与Provider日志提供程序</h2><p>配置<code>ILogger</code>日志记录器：</p>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">builder.AddJsonConsole().SetMinimumLevel(LogLevel.Trace);</span><br></pre></td></tr></table></figure></div>
-
-<ul>
-<li><code>ClearProviders</code>方法：清除之前添加的提供程序，从而接着可以换成你想要的</li>
-</ul>
-<p>配置<code>Provider</code>日志提供程序：</p>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">builder.AddJsonConsole(options =&gt; &#123;  </span><br><span class="line">    options.IncludeScopes = <span class="literal">false</span>;  <span class="comment">//禁用作用域</span></span><br><span class="line">    options.TimestampFormat = <span class="string">&quot;[yyyy-MM-dd HH:mm:ss] &quot;</span>;  </span><br><span class="line">    options.JsonWriterOptions = <span class="keyword">new</span> JsonWriterOptions &#123;  </span><br><span class="line">	    Indented = <span class="literal">true</span>  <span class="comment">//以缩进形式输出JSON</span></span><br><span class="line">	&#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &#123;</span></span><br><span class="line"><span class="comment">    &quot;Timestamp&quot;: &quot;[2025-12-12 11:15:07] &quot;,</span></span><br><span class="line"><span class="comment">    &quot;EventId&quot;: 233,</span></span><br><span class="line"><span class="comment">    &quot;LogLevel&quot;: &quot;Information&quot;,</span></span><br><span class="line"><span class="comment">    &quot;Category&quot;: &quot;Program&quot;,</span></span><br><span class="line"><span class="comment">    &quot;Message&quot;: &quot;Hello World! It is 12/12/2025 03:15:07.&quot;,</span></span><br><span class="line"><span class="comment">    &quot;State&quot;: &#123;</span></span><br><span class="line"><span class="comment">        &quot;Message&quot;: &quot;Hello World! It is 12/12/2025 03:15:07.&quot;,</span></span><br><span class="line"><span class="comment">        &quot;At&quot;: &quot;12/12/2025 03:15:07&quot;,</span></span><br><span class="line"><span class="comment">        &quot;&#123;OriginalFormat&#125;&quot;: &quot;Hello World! It is &#123;At&#125;.&quot;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125; */</span></span><br></pre></td></tr></table></figure></div>
-
-<h2 id="在appsettings-json中配置日志服务"><a href="#在appsettings-json中配置日志服务" class="headerlink" title="在appsettings.json中配置日志服务"></a>在<code>appsettings.json</code>中配置日志服务</h2><p>你不应该每次为了调整日志配置，都必须修改代码中的日志逻辑，并重新部署应用程序，而是应该将这些配置放在外部的配置文件中。</p>
-<p><code>appsettings.json</code>是大多数类型的应用程序项目模板中的标准配置文件，包括针对特定环境的版本<code>appsettings.Development.json</code>和不区分环境的通用版本<code>appsettings.json</code>。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/%E5%9C%A8appsettings.json%E4%B8%AD%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97%E6%9C%8D%E5%8A%A1.webp"
-                     
-                ></p>
-<h2 id="日志记录异常"><a href="#日志记录异常" class="headerlink" title="日志记录异常"></a>日志记录异常</h2><p>你可以捕获异常，并把它放到Log方法的第一个参数，来记录异常日志。</p>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Something went wrong&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">	logger.LogWarning(ex, <span class="string">&quot;Failure during birthday of &#123;Name&#125; who is &#123;Age&#125;&quot;</span>, name, age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="日志过滤器"><a href="#日志过滤器" class="headerlink" title="日志过滤器"></a>日志过滤器</h2><p>通过<code>LoggingBuilder.AddFilter</code>方法设置日志过滤器，它接收返回布尔值的委托。这个委托可以不传参数，也可以传入提供程序 <code>provider</code>、类别 <code>category</code> 和级别 <code>logLevel</code>。之前设置最低日志级别时，背后就是用到了日志过滤器。</p>
-<ul>
-<li><code>AddFilter&lt;SomeProvider&gt;(类别, 级别)</code>可以针对<code>SomeProvider</code>过滤。</li>
-</ul>
-<p>不过，这种方式更可能在你为他人开发类库时派上用场，而不是在构建微服务这类服务时，因为大多数配置实际上都会放在你的 <code>appsettings.json</code> 中。但知道你拥有灵活性，以备不时之需，总是好的。</p>
-<h2 id="日志提供程序-LoggerProvider"><a href="#日志提供程序-LoggerProvider" class="headerlink" title="日志提供程序 LoggerProvider"></a>日志提供程序 LoggerProvider</h2><p>控制台是临时日志提供程序，一旦停止运行，它和它的日志缓存就不存在了，它们不是持久化的。相反，文件系统就是能够持久存储日志的提供程序。</p>
-<ul>
-<li>ASP.NET Core 显式或隐式内置了 <code>Microsoft.Extensions.Logging</code> 的 <code>Console</code>、<code>Debug</code>、<code>EventLog</code>、<code>EventSource</code> 和 <code>TraceSource</code> 提供程序。</li>
-<li>Microsoft Azure 的云端日志提供程序：<code>ApplicaitonInsights</code>。</li>
-</ul>
-<p>在控制台中配置 <code>ApplicaitonInsights</code> 提供程序：</p>
-<ul>
-<li>引入NuGet包：<ul>
-<li><code>Microsoft.ApplicaitonInsights</code></li>
-<li><code>Microsoft.Extensions.DependencyInjection</code></li>
-<li><code>Microsoft.Extensions.Options.ConfigurationExtensions</code></li>
-<li><code>Microsoft.Extensions.Logging</code></li>
-<li><code>Microsoft.Extensions.Logging.ApplicaitonInsights</code></li>
-</ul>
-</li>
-</ul>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">var</span> channel = <span class="keyword">new</span> InMemoryChannel();</span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">	IServiceCollection services = <span class="keyword">new</span> ServiceCollection();</span><br><span class="line">	services.Configure&lt;TelemetryConfiguration&gt;(x =&gt; x.TelemetryChannel = channel);</span><br><span class="line">	services.AddLogging(x =&gt;</span><br><span class="line">	&#123;</span><br><span class="line">		x.AddApplicationInsights(</span><br><span class="line">			configureTelemetryConfiguration: teleConfig =&gt;</span><br><span class="line">				teleConfig.ConnectionString = <span class="string">&quot;your_connection_string&quot;</span>,</span><br><span class="line">			configureApplicationInsightsLoggerOptions: _ =&gt; &#123;&#125;</span><br><span class="line">		);</span><br><span class="line">	&#125;);</span><br><span class="line">	<span class="keyword">var</span> serviceProvider = services.BuildServiceProvider();</span><br><span class="line">	<span class="keyword">var</span> logging = serviceProvider.GetRquiredService&lt;ILogger&lt;Program&gt;&gt;();</span><br><span class="line">	logging.LogInformation(<span class="string">&quot;Hello from console!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">await</span> channel.FlushAsync(<span class="literal">default</span>);</span><br><span class="line">	<span class="keyword">await</span> Task.Delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="根据不同的运行环境配置不同的日志提供程序"><a href="#根据不同的运行环境配置不同的日志提供程序" class="headerlink" title="根据不同的运行环境配置不同的日志提供程序"></a>根据不同的运行环境配置不同的日志提供程序</h2><p>在生产环境中，你不希望日志泛滥。你需要对日志行为非常精准地控制，像在生产环境中使用控制台日志记录，可能会拖垮应用程序的性能。在 ASP.NET Core 中，<code>builder.Environment.IsDevelopment</code>方法可以返回当前是否在开发环境。</p>
-<ul>
-<li>这里要获取<code>ILoggingBuilder</code>，使用<code>builder.Logging</code>属性。</li>
-<li>与开发环境（<code>Development</code>）平行的是生产环境（<code>Production</code>）。</li>
-</ul>
-<h2 id="自定义日志提供程序"><a href="#自定义日志提供程序" class="headerlink" title="自定义日志提供程序"></a>自定义日志提供程序</h2><p>要自定义日志提供程序，实现<code>ILogger</code>和<code>ILoggerProvider</code>接口，并在你的<code>LoggerProvider</code>的<code>CreateLogger</code>方法中返回你的<code>Logger</code>。</p>
-<ul>
-<li><code>ILogger</code>接口：<ul>
-<li><code>TState</code>泛型：包含实际日志消息的参数的泛型</li>
-<li><code>BeginScope</code>方法：开启作用域</li>
-<li><code>IsEnabled</code>方法：返回是否启用</li>
-<li><code>Log</code>方法：如果启用，记录日志</li>
-</ul>
-</li>
-</ul>
-<h2 id="日志消息模板字符串"><a href="#日志消息模板字符串" class="headerlink" title="日志消息模板字符串"></a>日志消息模板字符串</h2><ul>
-<li><code>{Total:C}</code>：当前文化的货币格式</li>
-<li><code>{Date:F}</code>：当前文化的日期完整格式</li>
-<li><code>{Date:u}</code>：universal sortable date，通用可排序日期格式</li>
-</ul>
-<p>要实现复杂类型数据的格式化和结构化，你不得不使用<code>JsonSerializer</code>。此时，如果你又要使用<code>JsonConsole</code>，会出现JSON嵌套在JSON中的情况，你必须谨慎处理这里的序列化过程。</p>
-<h2 id="日志作用域-Log-Scope"><a href="#日志作用域-Log-Scope" class="headerlink" title="日志作用域 Log Scope"></a>日志作用域 Log Scope</h2><p>在代码中，存在一段从开始到结束都需要处理特定上下文的区域，这个上下文可能是某种特定的支付、特定的订单、购物车，或者任何在你的业务领域中有意义的内容。尽管一些日志是独立的，但它们所关联的大量数据都与特定的上下文相关。</p>
-<ul>
-<li><code>JsonConsole</code>的<code>Options</code>：<ul>
-<li><code>IncludeScopes</code>属性：是否包含作用域；为<code>true</code>时，结果中将出现<code>Scopes</code>属性，它是一个数组，包含所有上下文数据</li>
-</ul>
-</li>
-</ul>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> (logging.BeginScope(<span class="string">&quot;&#123;PaymentId&#125;&quot;</span>, paymentId))</span><br><span class="line"><span class="keyword">using</span> (logging.BeginScope(<span class="string">&quot;&#123;TotalAmount:C&#125;&quot;</span>, amount))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">try</span></span><br><span class="line">	&#123;</span><br><span class="line">		logger.LogInformation(<span class="string">&quot;New payment processing&quot;</span>);</span><br><span class="line">		<span class="comment">//processing new payment</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">finally</span></span><br><span class="line">	&#123;</span><br><span class="line">		logger.LogInformation(<span class="string">&quot;Payment processing completed&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<ul>
-<li><code>PaymentId</code>和<code>TotalAmount</code>将作为上下文数据由作用域内的所有日志共享，它们将包含在这些日志的<code>Scopes</code>数组中。</li>
-</ul>
-<h2 id="检查日志是否启用"><a href="#检查日志是否启用" class="headerlink" title="检查日志是否启用"></a>检查日志是否启用</h2><p>虽然日志提供程序通常都会在<code>Log</code>方法的开头检查是否启用，但是为以防万一，你应该在自己的代码中也加入<code>IsEnabled</code>的判断，以确保没有性能问题。</p>
-<h2 id="日志记录操作耗时"><a href="#日志记录操作耗时" class="headerlink" title="日志记录操作耗时"></a>日志记录操作耗时</h2><p>下面是利用<code>Stopwatch</code>类和日志上下文机制记录操作耗时的方法。</p>
-<p><code>Stopwatch</code>类是.NET中测量时间最精确的方案：</p>
-<ul>
-<li><code>GetTimestamp</code>静态方法：获取当前时间戳</li>
-<li><code>GetElapsedTime</code>静态方法：获取传入时间戳到现在的时间间隔</li>
-</ul>
-<p>可以用<code>Stopwatch</code>类结合作用域机制，获取并记录操作耗时。</p>
-<p>创建<code>TimedOperation</code>类，聚合<code>_logger</code>、<code>_logLevel</code>、<code>_eventId</code>、<code>_message</code> 和 <code>_args</code>，实现<code>IDisposable</code>接口：</p>
-<ul>
-<li>在构造方法中获取当前时间戳</li>
-<li>在<code>Dispose</code>方法获取时间间隔，并调用<code>_logger.Log</code>方法记录耗时日志</li>
-</ul>
-<p>创建<code>TimedOperationExtensions</code>类，扩展以支持<code>ILogger</code>接口：</p>
-<ul>
-<li><code>BeginTimedOperation</code>方法：创建并返回<code>TimedOperation</code>对象，用作上下文数据</li>
-<li>创建一个不传入<code>LogLevel</code>的<code>BeginTimedOperation</code>方法重载，并默认使用<code>Information</code>级别</li>
-</ul>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> (logger.BeginTimedOperation(<span class="string">&quot;Handling new payment&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">	logger.LogInformation(<span class="string">&quot;New payment processing&quot;</span>);</span><br><span class="line">	<span class="comment">//processing new payment</span></span><br><span class="line">	<span class="keyword">await</span> Task.Delay(<span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="运行时动态修改最低日志级别"><a href="#运行时动态修改最低日志级别" class="headerlink" title="运行时动态修改最低日志级别"></a>运行时动态修改最低日志级别</h2><p>在你的应用程序中，只要支持在运行时热重载或动态重载<code>appsettings.json</code>配置文件，就可以实现运行时动态修改最低日志级别这一功能。而这就是配置提供程序要做的事情了。</p>
 
 		</div>
 
@@ -691,18 +608,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> .NET日志(2)：Microsoft.Extensions.Logging包</li>
+        <li><strong>标题:</strong> .NET多线程(6)：并行循环</li>
         <li><strong>作者:</strong> xicuod</li>
         <li><strong>创建于
-                :</strong> 2025-12-12 09:49:43</li>
+                :</strong> 2026-01-27 18:07:00</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-01-25 19:46:11
+                    :</strong> 2026-01-27 18:18:41
             </li>
         
         <li>
-            <strong>链接:</strong> https://blog.xicuodev.top/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/
+            <strong>链接:</strong> https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-6-parallel-loop/
         </li>
         <li>
             <strong>
@@ -728,12 +645,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/12/13/dotnet-logging-3-serilog/">
+				<a class="prev" rel="prev" href="/2026/01/27/dotnet-multithreading-7-plinq/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">.NET日志(3)：Serilog</span>
+						<span class="post-nav-title-item truncate max-w-48">.NET多线程(7)：并行LINQ（PLINQ）</span>
 						<span class="post-nav-item">上一篇</span>
 					</span>
 				</a>
@@ -741,9 +658,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/12/12/dotnet-logging-1-introduction/">
+				<a class="next" rel="next" href="/2026/01/27/dotnet-multithreading-5-asynchronous/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">.NET日志(1)：概论</span>
+						<span class="post-nav-title-item truncate max-w-48">.NET多线程(5)：异步编程</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -822,8 +739,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">.NET日志(2)：Microsoft.Extensions.Logging包</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95-%E8%AF%AD%E4%B9%89%E5%8C%96%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95"><span class="nav-text">结构化日志记录&#x2F;语义化日志记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E7%B1%BB%E5%88%AB%E7%BA%A6%E5%AE%9A"><span class="nav-text">日志类别约定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%E7%BA%A6%E5%AE%9A"><span class="nav-text">日志级别约定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E4%BA%8B%E4%BB%B6ID"><span class="nav-text">日志事件ID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E5%BA%94%E7%94%A8-Host"><span class="nav-text">主机应用 Host</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89ILogger%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%99%A8%E4%B8%8EProvider%E6%97%A5%E5%BF%97%E6%8F%90%E4%BE%9B%E7%A8%8B%E5%BA%8F"><span class="nav-text">自定义ILogger日志记录器与Provider日志提供程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8appsettings-json%E4%B8%AD%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97%E6%9C%8D%E5%8A%A1"><span class="nav-text">在appsettings.json中配置日志服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%BC%82%E5%B8%B8"><span class="nav-text">日志记录异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-text">日志过滤器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E6%8F%90%E4%BE%9B%E7%A8%8B%E5%BA%8F-LoggerProvider"><span class="nav-text">日志提供程序 LoggerProvider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E6%97%A5%E5%BF%97%E6%8F%90%E4%BE%9B%E7%A8%8B%E5%BA%8F"><span class="nav-text">根据不同的运行环境配置不同的日志提供程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%97%A5%E5%BF%97%E6%8F%90%E4%BE%9B%E7%A8%8B%E5%BA%8F"><span class="nav-text">自定义日志提供程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E6%B6%88%E6%81%AF%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">日志消息模板字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E4%BD%9C%E7%94%A8%E5%9F%9F-Log-Scope"><span class="nav-text">日志作用域 Log Scope</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E6%97%A5%E5%BF%97%E6%98%AF%E5%90%A6%E5%90%AF%E7%94%A8"><span class="nav-text">检查日志是否启用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E6%93%8D%E4%BD%9C%E8%80%97%E6%97%B6"><span class="nav-text">日志记录操作耗时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8A%A8%E6%80%81%E4%BF%AE%E6%94%B9%E6%9C%80%E4%BD%8E%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB"><span class="nav-text">运行时动态修改最低日志级别</span></a></li></ol>
+		<div class="page-title">.NET多线程(6)：并行循环</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E8%A1%8C%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">并行循环的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E8%A1%8C%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-text">并行循环的异常处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E8%A1%8C%E5%BE%AA%E7%8E%AF%E7%9A%84%E4%B8%BB%E5%8A%A8%E5%B9%B2%E9%A2%84"><span class="nav-text">并行循环的主动干预</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Break%E6%96%B9%E6%B3%95%E6%80%8E%E4%B9%88%E4%BD%BF%E5%B9%B6%E8%A1%8C%E5%BE%AA%E7%8E%AF%E2%80%9C%E5%AE%8C%E6%95%B4%E5%9C%B0%E2%80%9D%E8%BF%AD%E4%BB%A3%E5%88%B0%E7%89%B9%E5%AE%9A%E8%BF%9B%E5%BA%A6%EF%BC%9F"><span class="nav-text">Break方法怎么使并行循环“完整地”迭代到特定进度？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88Break%E6%97%B6%E9%80%89%E7%94%A8LowestBreakIteration%EF%BC%9F"><span class="nav-text">为什么Break时选用LowestBreakIteration？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E8%A1%8C%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%9C-ParallelLoopResult"><span class="nav-text">并行循环结果 ParallelLoopResult</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E8%A1%8C%E5%BE%AA%E7%8E%AF%E5%8F%96%E6%B6%88"><span class="nav-text">并行循环取消</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E8%A1%8C%E5%BE%AA%E7%8E%AF%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8"><span class="nav-text">并行循环中的线程本地存储</span></a></li></ol>
 
 	</div>
 </div>

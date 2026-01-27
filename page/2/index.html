@@ -129,7 +129,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://blog.xicuodev.top/archives/2025/12/"/>
+    <link rel="canonical" href="https://blog.xicuodev.top/page/2/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -140,7 +140,7 @@
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="系错的技术博客">
-<meta property="og:url" content="https://blog.xicuodev.top/archives/2025/12/index.html">
+<meta property="og:url" content="https://blog.xicuodev.top/page/2/index.html">
 <meta property="og:site_name" content="系错的技术博客">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
@@ -159,7 +159,7 @@
     
     <title>
         
-            归档: 2025/12 | XiCuod&#39;s Tech Blog
+            XiCuod&#39;s Tech Blog - 好用、美观
         
     </title>
 
@@ -224,6 +224,41 @@
 <main class="page-container" id="swup">
 
 	
+	<style>
+    .home-article-item,
+    .sidebar-links,
+    .sidebar-content,
+    a.page-number,
+    a.extend,
+    .sidebar-links .links:hover,
+    .right-bottom-tools,
+    footer.footer {
+        background-color: var(--background-color-transparent-80) !important;
+    }
+    .right-bottom-tools:hover,
+    a.page-number:hover,
+    a.extend:hover {
+        background-color: var(--primary-color) !important;
+    }
+    .site-info,
+    .home-article-sticky-label {
+        background-color: var(--background-color-transparent-15) !important;
+    }
+    .home-article-sticky-label {
+        backdrop-filter: none !important;
+    }
+    .home-banner-background {
+        filter: blur(15px);
+    }
+</style>
+
+<div class="home-banner-background transition-fade fixed top-0 left-0 w-screen h-screen scale-125 sm:scale-110 box-border will-change-transform bg-cover">
+    <img src="/images/wallhaven-wqery6-light.webp" alt="home-banner-background" class="w-full h-full object-cover dark:hidden">
+    <img src="/images/wallhaven-wqery6-dark.webp" alt="home-banner-background" class="w-full h-full object-cover hidden dark:block">
+</div>
+
+
+	
 
 	<div class="main-content-container flex flex-col justify-between min-h-dvh">
 		<div class="main-content-header">
@@ -236,9 +271,9 @@
                 </a>
             
             <a class="logo-title" href="/">
-                
+                <h1>
                 XiCuod&#39;s Tech Blog
-                
+                </h1>
             </a>
         </div>
 
@@ -252,7 +287,7 @@
 
                             <li class="navbar-item">
                                 <!-- Menu -->
-                                <a class=""
+                                <a class="active"
                                    href="/"
                                         >
                                     <i class="fa-solid fa-house fa-fw"></i>
@@ -286,7 +321,7 @@
 
                             <li class="navbar-item">
                                 <!-- Menu -->
-                                <a class="active"
+                                <a class=""
                                    href="/archives/"
                                         >
                                     <i class="fa-solid fa-box-archive fa-fw"></i>
@@ -337,7 +372,7 @@
 
                     <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
                         
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
                            href="/"
                         >
                             <span>
@@ -377,7 +412,7 @@
 
                     <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
                         
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
                            href="/archives/"
                         >
                             <span>
@@ -442,172 +477,383 @@
 
 		<div class="main-content-body transition-fade-up">
 			
+			<div class="home-sidebar-container">
+    <div class="sticky-container sticky">
+        
+        
+            
+            <div class="sidebar-content" >
+                <div class="avatar flex justify-center">
+    <img src="/images/avatar.jpg">
+</div>
+                <div class="author flex flex-col justify-center my-2.5 mx-0">
+    <div class="name">xicuod</div>
+    
+        <div class="label">Lv2</div>
+    
+</div>
+                <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+            </div>
+        
+
+    </div>
+</div>
+
+			
 
 			<div class="main-content">
-				<div class="archive-container shadow-none hover:shadow-none sm:shadow-redefine sm:hover:shadow-redefine-hover">
-	
-<div class="archive-list-container">
-    
-        <section class="archive-item mb-spacing-unit last:mb-0">
-            <div class="archive-item-header flex flex-row items-center mb-2">
-                <span class="archive-year font-semibold text-3xl mr-2">2026</span>
-                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">8</span>
-            </div>
-            
-            <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
+				<div class="home-content-container">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
                 
-                    
-                    
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='01-27'>
-                    
-                    <a href="/2026/01/27/dotnet-multithreading-8-concurrent-data-structures/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">.NET多线程(8)：并发数据结构</span>
-                    </a>
-                    
+
                 
-                    
-                    
-                    <a href="/2026/01/27/dotnet-multithreading-7-plinq/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">.NET多线程(7)：并行LINQ（PLINQ）</span>
-                    </a>
-                    
+
                 
-                    
-                    
-                    <a href="/2026/01/27/dotnet-multithreading-6-parallel-loop/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">.NET多线程(6)：并行循环</span>
-                    </a>
-                    
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/12/13/dotnet-logging-3-serilog/">
+                            .NET日志(3)：Serilog
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            无论是作用域、IsEnabled、格式化或消息模板的概念，还是结构化日志记录，Serilog都是这些功能的开创者和标准化者。
+
+对消息模板、结构化日志、参数解析等都有极佳的支持。
+庞大的Sinks家族：Serilog的Sinks就相当于Logging中的Provider，而Serilog的Sinks可能有几十个甚至上百个。
+
+创建Serilog日志记录器
+引入Serilog包
+
+1var l...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sat Dec 13 2025 10:00:00 GMT+0800">
                 
-                    
-                    
-                    <a href="/2026/01/27/dotnet-multithreading-5-asynchronous/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">.NET多线程(5)：异步编程</span>
-                    </a>
-                    
+                    2025-12-13
                 
-                    
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
                     
                         
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='01-26'>
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                        </li>
                     
-                    <a href="/2026/01/26/dotnet-multithreading-4-safety/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">.NET多线程(4)：线程安全</span>
-                    </a>
                     
                 
-                    
-                    
-                    <a href="/2026/01/26/dotnet-multithreading-3-interaction/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">.NET多线程(3)：线程交互</span>
-                    </a>
-                    
-                
-                    
                     
                         
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='01-25'>
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
+                        </li>
                     
-                    <a href="/2026/01/25/dotnet-multithreading-2-synchronization/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">.NET多线程(2)：线程同步</span>
-                    </a>
                     
                 
                     
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
+                        </li>
                     
-                    <a href="/2026/01/25/dotnet-multithreading-1-basic/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">.NET多线程(1)：多线程基础</span>
-                    </a>
                     
                 
-                </li> <!-- Ensure the last item is properly closed -->
             </ul>
-        </section>
-    
-        <section class="archive-item mb-spacing-unit last:mb-0">
-            <div class="archive-item-header flex flex-row items-center mb-2">
-                <span class="archive-year font-semibold text-3xl mr-2">2025</span>
-                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">6</span>
-            </div>
-            
-            <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
+        </span>
+        
+        
+    </div>
+
+    <a href="/2025/12/13/dotnet-logging-3-serilog/">阅读全文<span class="seo-reader-text">.NET日志(3)：Serilog</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
                 
-                    
-                    
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='12-18'>
-                    
-                    <a href="/2025/12/18/dotnet-logging-5-monitoring-and-alerting/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">.NET日志(5)：监控与告警</span>
-                    </a>
-                    
+
                 
-                    
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/">
+                            .NET日志(2)：Microsoft.Extensions.Logging包
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            ILogger并不是一个BCL（Basic Class Library，基础类库）接口，而是来自于Microsoft.Extensions.Logging包。如果你是一个类库作者，你可以引用Microsoft.Extensions.Logging.Abstraction抽象依赖，因为开发类库通常用不上这些具体实现。
+
+LoggerFactory日志记录器工厂：
+Create静态方法：创建一个...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Dec 12 2025 09:49:43 GMT+0800">
+                
+                    2025-12-12
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
                     
                         
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='12-17'>
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                        </li>
                     
-                    <a href="/2025/12/17/dotnet-logging-4-performance/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">.NET日志(4)：性能优化</span>
-                    </a>
                     
                 
-                    
                     
                         
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='12-13'>
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
+                        </li>
                     
-                    <a href="/2025/12/13/dotnet-logging-3-serilog/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">.NET日志(3)：Serilog</span>
-                    </a>
                     
                 
-                    
                     
                         
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='12-12'>
-                    
-                    <a href="/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">.NET日志(2)：Microsoft.Extensions.Logging包</span>
-                    </a>
-                    
-                
-                    
-                    
-                    <a href="/2025/12/12/dotnet-logging-1-introduction/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">.NET日志(1)：概论</span>
-                    </a>
-                    
-                
-                    
-                    
+                            <li>></li>
                         
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='08-26'>
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
+                        </li>
                     
-                    <a href="/2025/08/26/cs-common-collections-api/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">C#常见集合接口</span>
-                    </a>
                     
                 
-                </li> <!-- Ensure the last item is properly closed -->
             </ul>
-        </section>
-    
+        </span>
+        
+        
+    </div>
+
+    <a href="/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/">阅读全文<span class="seo-reader-text">.NET日志(2)：Microsoft.Extensions.Logging包</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/12/12/dotnet-logging-1-introduction/">
+                            .NET日志(1)：概论
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            日志类别 Log Category日志类别只是一种逻辑方式，用于将不同的日志条目归类到某种统一的分组下。例如，如果你正在运行一个API，微软会将其自身的所有日志归类在Microsoft.Asp.Core这个类别或分组下，你也可以控制自己的日志类别。
+
+ILogger&lt;类&gt;：通常是当前类，如ILogger&lt;Program&gt;
+LogInformation方法：打印info...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Dec 12 2025 09:16:40 GMT+0800">
+                
+                    2025-12-12
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2025/12/12/dotnet-logging-1-introduction/">阅读全文<span class="seo-reader-text">.NET日志(1)：概论</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/08/26/cs-common-collections-api/">
+                            C#常见集合接口
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            下面只列出泛型接口，没有泛型的版本的接口处理数据的逻辑差不多，只是需要装拆箱。
+
+IEnumerable&lt;TItem&gt;：可迭代、可枚举类型
+GetEnumerator 方法：获取迭代器&#x2F;枚举器
+
+
+IEnumerator&lt;TItem&gt;：枚举器，初始不指向任何元素，要调用一次MoveNext方法启动枚举器
+Current属性：当前元素，只get
+MoveNex...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Aug 26 2025 15:11:00 GMT+0800">
+                
+                    2025-08-26
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/">C#技术栈</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/C-%E5%9F%BA%E7%A1%80/">C#基础</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2025/08/26/cs-common-collections-api/">阅读全文<span class="seo-reader-text">C#常见集合接口</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator px-7 py-5">
+        <div class="paginator">
+	<a class="extend prev" rel="prev" href="/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+</div>
+  
+    </div>
+</div>
+
 			</div>
 
 			
@@ -757,6 +1003,7 @@
         containers: ["#swup"],
     });
 </script>
+
 
 
 

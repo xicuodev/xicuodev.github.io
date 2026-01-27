@@ -129,7 +129,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://blog.xicuodev.top/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/"/>
+    <link rel="canonical" href="https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-5-asynchronous/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -139,14 +139,14 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content=".NET日志(2)：Microsoft.Extensions.Logging包">
-<meta property="og:url" content="https://blog.xicuodev.top/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/index.html">
+<meta property="og:title" content=".NET多线程(5)：异步编程">
+<meta property="og:url" content="https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-5-asynchronous/index.html">
 <meta property="og:site_name" content="系错的技术博客">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.xicuodev.top/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-12-12T01:49:43.616Z">
-<meta property="article:modified_time" content="2026-01-25T11:46:11.559Z">
+<meta property="article:published_time" content="2026-01-27T09:40:19.023Z">
+<meta property="article:modified_time" content="2026-01-27T10:03:48.444Z">
 <meta property="article:author" content="xicuod">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.xicuodev.top/images/redefine-og.webp">
@@ -161,7 +161,7 @@
     
     <title>
         
-            .NET日志(2)：Microsoft.Extensions.Logging包 | XiCuod&#39;s Tech Blog
+            .NET多线程(5)：异步编程 | XiCuod&#39;s Tech Blog
         
     </title>
 
@@ -452,7 +452,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">.NET日志(2)：Microsoft.Extensions.Logging包</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">.NET多线程(5)：异步编程</h1>
 			</div>
 			
 		</div>
@@ -473,15 +473,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-12-12 09:49:43</span>
-        <span class="mobile">2025-12-12 09:49:43</span>
+        <span class="desktop">2026-01-27 17:40:19</span>
+        <span class="mobile">2026-01-27 17:40:19</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-01-25 19:46:11</span>
-            <span class="mobile">2026-01-25 19:46:11</span>
+            <span class="desktop">2026-01-27 18:03:48</span>
+            <span class="mobile">2026-01-27 18:03:48</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -515,7 +515,7 @@
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E6%97%A5%E5%BF%97/">.NET日志</a>&nbsp;
+                            <a href="/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/">.NET多线程</a>&nbsp;
                         </li>
                     
                     
@@ -544,146 +544,117 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<p><code>ILogger</code>并不是一个BCL（Basic Class Library，基础类库）接口，而是来自于<code>Microsoft.Extensions.Logging</code>包。如果你是一个类库作者，你可以引用<code>Microsoft.Extensions.Logging.Abstraction</code>抽象依赖，因为开发类库通常用不上这些具体实现。</p>
-<ul>
-<li><code>LoggerFactory</code>日志记录器工厂：<ul>
-<li><code>Create</code>静态方法：创建一个工厂</li>
-<li><code>CreateLogger&lt;&gt;</code>方法：创建一个日志记录器</li>
+			<h2 id="多线程-vs-异步编程"><a href="#多线程-vs-异步编程" class="headerlink" title="多线程 vs. 异步编程"></a>多线程 vs. 异步编程</h2><ul>
+<li>多线程与异步编程二者本质上相同，只是侧重点不同</li>
+<li>多线程侧重于分而治之的场景，异步编程侧重于卸载长时间运行的任务（详见<a href="/2026/01/25/dotnet-multithreading-1-basic/#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F" title=".NET多线程(1)：多线程基础">为什么要使用多线程</a>）</li>
+<li>多线程适用于CPU密集型操作，异步编程适用于I&#x2F;O密集型操作</li>
+<li>I&#x2F;O操作：访问本地文件、访问数据库、访问互联网</li>
+</ul>
+<h2 id="Task类"><a href="#Task类" class="headerlink" title="Task类"></a><code>Task</code>类</h2><ul>
+<li>构造器：<code>new Task(委托)</code></li>
+<li><code>Start</code>方法</li>
+<li>更常见的写法：<code>var task = Task.Run(委托)</code></li>
+<li><code>Task</code>对象中封装了许多实用数据和功能</li>
+<li>使用<code>Task.Delay(毫秒数)</code>，而不是<code>Thread.Sleep(毫秒数)</code></li>
+</ul>
+<h2 id="Thread类-vs-Task类"><a href="#Thread类-vs-Task类" class="headerlink" title="Thread类 vs. Task类"></a><code>Thread</code>类 vs. <code>Task</code>类</h2><ul>
+<li><code>Task</code>是一个承诺（<code>Promise</code>）：它不一定涉及线程，只是承诺在未来某个时间完成任务</li>
+<li>推荐使用<code>Task</code>类而不是<code>Thread</code>类，因为<code>Task</code>类是更高级别的抽象，开箱即用，而<code>Thread</code>类更底层<ul>
+<li>默认使用线程池；从任务中返回结果；简单的任务延续；更好异常处理</li>
+<li><code>Async</code>&#x2F;<code>Await</code>：使编写异步代码像编写同步代码一样；便于同步上下文，解决线程亲和性问题</li>
 </ul>
 </li>
 </ul>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LoggerFactory.Create(builder =&gt; &#123; builder.AddConsole(); &#125;);</span><br><span class="line">ILogger logger = loggerFactory.CreateLogger&lt;Program&gt;();</span><br></pre></td></tr></table></figure></div>
-
+<h2 id="从任务中返回结果"><a href="#从任务中返回结果" class="headerlink" title="从任务中返回结果"></a>从任务中返回结果</h2><ul>
+<li><code>Task.Run(委托)</code>返回的<code>Task&lt;T&gt;</code>中的泛型<code>T</code>就是返回值类型</li>
+<li><code>Result</code>属性：委托方法的返回值</li>
+</ul>
+<h2 id="任务阻塞-Task-Blocking"><a href="#任务阻塞-Task-Blocking" class="headerlink" title="任务阻塞 Task Blocking"></a>任务阻塞 Task Blocking</h2><ul>
+<li><code>Wait</code>方法：阻塞调用线程，直到任务完成</li>
+<li><code>WaitAll</code>静态方法：阻塞调用线程，直到所有任务完成</li>
+<li><code>Result</code>属性：阻塞调用线程，直到任务完成并返回结果</li>
+</ul>
+<h2 id="任务延续-Task-Continuation"><a href="#任务延续-Task-Continuation" class="headerlink" title="任务延续 Task Continuation"></a>任务延续 Task Continuation</h2><ul>
+<li><p><code>ContinueWith</code>方法：创建一个工作线程，执行传入的委托，委托提供主调<code>Task</code>对象的参数</p>
+</li>
+<li><p><code>WhenAll</code>静态方法：接收并返回<code>Task</code>数组，表示当所有<code>Task</code>完成时</p>
+</li>
+<li><p><code>WhenAny</code>静态方法：接收<code>Task</code>数组，返回<code>Task</code>，表示当任一<code>Task</code>完成时</p>
+</li>
+<li><p>配合<code>ContinueWith</code>或<code>await</code>使用，让<code>When</code>返回的任务实际运行起来</p>
+</li>
+<li><p>延续链（continuation chain）：你可以链式使用<code>ContinueWith</code>，形成一条任务链 <code>Task&lt;Task&lt;string&gt;&gt;</code></p>
+</li>
+<li><p>拆包装（unwrap）：但你并不想要 <code>Task&lt;Task&lt;string&gt;&gt;</code> 这种套娃的怪东西，因此需要用到<code>Unwrap</code>方法，它将执行里面的<code>Task</code>，并返回<code>Task&lt;string&gt;</code></p>
+</li>
+<li><p><code>Unwrap</code>也是非阻塞的，它会在工作线程中执行相关操作</p>
+</li>
+</ul>
+<h2 id="任务的异常处理"><a href="#任务的异常处理" class="headerlink" title="任务的异常处理"></a>任务的异常处理</h2><ul>
+<li><p>任务中的异常是隐藏的，不会影响主线程继续运行</p>
+</li>
+<li><p>对任务使用外部<code>try-catch</code>不起作用</p>
 <ul>
-<li><code>ILogger</code>日志记录器：<ul>
-<li><code>Log</code>方法：<code>logLevel</code>, <code>eventId</code>（<a href="#%E6%97%A5%E5%BF%97%E4%BA%8B%E4%BB%B6ID">事件ID</a>）, <code>message</code></li>
-<li><code>LogInformation</code>等扩展方法：封装<code>Log</code>方法，常用</li>
+<li>任何在委托外部的<code>try-catch</code>都是无稽之谈，因为委托一般不会就地执行</li>
+</ul>
+</li>
+<li><p>异常存储在任务本身中：<code>Status</code>属性（异常时值为<code>Faulted</code>故障）和<code>Exception</code>属性（<code>System.AggregateException</code>类，存储所有异常）</p>
+</li>
+<li><p>可以迭代这些异常：<code>task.Exception.InnerExceptions</code>属性</p>
+</li>
+<li><p>使用<code>Wait</code>或<code>Result</code>：抛出任务的<code>AggregateException</code></p>
+</li>
+<li><p><code>ContinueWith</code>方法有个重载，第二个参数为<code>TaskContinuationOptions</code>枚举，设置为<code>NotOnFaulted</code>就会抛出<code>AggregateException</code></p>
+</li>
+<li><p>使用<code>await</code>：如果有任何异常，直接抛出，不再延续执行</p>
+</li>
+</ul>
+<h2 id="任务同步-Task-Synchronization"><a href="#任务同步-Task-Synchronization" class="headerlink" title="任务同步 Task Synchronization"></a>任务同步 Task Synchronization</h2><ul>
+<li>任务同步和线程同步的办法完全一样</li>
+<li>任务同步：<code>lock</code>关键字、监视器、互斥锁和读写锁</li>
+<li>任务交互：信号量、自动重置事件和手动重置事件</li>
+</ul>
+<h2 id="任务取消-Task-Cancellation"><a href="#任务取消-Task-Cancellation" class="headerlink" title="任务取消 Task Cancellation"></a>任务取消 Task Cancellation</h2><ul>
+<li>任务取消和线程取消的办法别无二致</li>
+<li>设置一个共享的标志变量，如 <code>bool cancelTask</code></li>
+<li>更好的做法：<code>CancellationTokenSource</code>类（非托管资源，使用<code>using</code>）<ul>
+<li>获取令牌：<code>Token</code>属性（<code>CancellationToken</code>类）</li>
+<li>请求取消：<code>Cancel</code>方法</li>
+<li>是否请求取消：<code>IsCancellationRequested</code>属性</li>
+<li>超时取消：<code>CancelAfter</code>方法，若取消，应抛出<code>OperationCanceledException</code>；为此，推荐使用<code>ThrowIfCancellationRequested</code>方法</li>
+<li>异步方法API通常都有个重载接收<code>CancellationToken</code>来实现取消异步操作，如<code>HttpClient</code>类<code>GetStringAsync</code>方法的第二个参数</li>
 </ul>
 </li>
 </ul>
-<h2 id="结构化日志记录-语义化日志记录"><a href="#结构化日志记录-语义化日志记录" class="headerlink" title="结构化日志记录&#x2F;语义化日志记录"></a>结构化日志记录&#x2F;语义化日志记录</h2><p>不要使用字符串拼接、模板字符串或格式字符串来传递日志消息，这会导致具体的参数值“烘焙”到日志消息中，从而丢失<code>OriginalFormat</code>（原始格式）。我们希望捕获上下文、作用域、细节和信息，而这正是消息模板字符串和“结构化日志记录”所解决的问题。</p>
+<h2 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async &amp; Await"></a>Async &amp; Await</h2><ul>
+<li><p>使用<code>async</code>修饰异步方法，并在异步任务前加<code>await</code>，使编写异步代码看起来就像在编写同步代码</p>
+</li>
+<li><p>当你在主线程调用异步方法时，它将在一个工作线程中异步执行</p>
+</li>
+<li><p>在异步方法中，<code>await</code>之后的所有内容都是异步任务的延续</p>
 <ul>
-<li><code>Microsoft.Extensions.Logging.Console</code>：<ul>
-<li><code>ILoggingBuilder.AddJsonConsole</code>方法：控制台输出结构化的JSON日志</li>
+<li><code>await</code>之前的内容在主线程上执行，之后的内容在工作线程上执行</li>
 </ul>
 </li>
-</ul>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">var</span> loggerFactory = LoggerFactory.Create(builder =&gt; &#123; builder.AddJsonConsole(); &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> logger = loggerFactory.CreateLogger&lt;Program&gt;();</span><br><span class="line"></span><br><span class="line">logger.LogInformation(<span class="string">&quot;Hello World! It is &#123;At&#125;.&quot;</span>, DateTime.UtcNow);</span><br><span class="line"></span><br><span class="line"><span class="comment">//&#123;&quot;EventId&quot;:0,&quot;LogLevel&quot;:&quot;Information&quot;,&quot;Category&quot;:&quot;Program&quot;,&quot;Message&quot;:&quot;Hello World! It is 12/12/2025 02:17:20.&quot;,&quot;State&quot;:&#123;&quot;Message&quot;:&quot;Hello World! It is 12/12/2025 02:17:20.&quot;,&quot;At&quot;:&quot;12/12/2025 02:17:20&quot;,&quot;&#123;OriginalFormat&#125;&quot;:&quot;Hello World! It is &#123;At&#125;.&quot;&#125;&#125;</span></span><br></pre></td></tr></table></figure></div>
-
-<h2 id="日志类别约定"><a href="#日志类别约定" class="headerlink" title="日志类别约定"></a>日志类别约定</h2><p>日志类别通常约定为注入或使用<code>ILogger&lt;类&gt;</code>的类名。从.NET 6开始，任何自动的依赖注入服务都不会自动注入非泛型的<code>ILogger</code>。</p>
-<h2 id="日志级别约定"><a href="#日志级别约定" class="headerlink" title="日志级别约定"></a>日志级别约定</h2><p>默认情况下，无论是JSON控制台还是普通控制台，它们的最低日志级别都是<code>Information</code>，这意味着它们会完全忽略<code>Debug</code>或<code>Trace</code>级别的日志。</p>
-<ul>
-<li>要设置最低日志级别，使用<code>ILoggingBuilder.SetMinimumLevel</code>方法：</li>
-</ul>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">builder.SetMinimumLevel(LogLevel.Trace);</span><br></pre></td></tr></table></figure></div>
-
-<p>在现代应用程序中，尤其是ASP.NET Core中，这类配置通常会集中放在相应的<code>appsettings.json</code>文件中，或你正在使用的其他配置提供程序中。这会自动配置最低日志级别，无需在代码中手动配置。</p>
-<h2 id="日志事件ID"><a href="#日志事件ID" class="headerlink" title="日志事件ID"></a>日志事件ID</h2><p>事件ID用于给一种类型的事件打标签，一个ID代表一种事件。</p>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.LogInformation(<span class="number">233</span>, <span class="string">&quot;ID为233的事件发生了。&quot;</span>);</span><br></pre></td></tr></table></figure></div>
-
-<p>非常常见的一种做法是，人们会创建一个事件类，用于集中放置事件ID：</p>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">LogEvents</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">const</span> <span class="built_in">int</span> SomeEvent = <span class="number">233</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>现代结构化日志框架有很多为日志打标签的替代方案，然而事件ID仍是一个非常强大的工具。</p>
-<h2 id="主机应用-Host"><a href="#主机应用-Host" class="headerlink" title="主机应用 Host"></a>主机应用 Host</h2><p>主机通常需要长时间运行，并为客户提供服务，适用于后台工作进程，常见于Web框架。要在非主机控制台应用中使用主机，引入<code>Microsoft.Extensions.Hosting</code>包。</p>
-<p><code>Logging</code>包提供主机<code>IHost</code>的<code>ConfigureLogging</code>扩展方法，接收<code>ILoggingBuilder</code>，从而为主机配置日志服务。</p>
-<h2 id="自定义ILogger日志记录器与Provider日志提供程序"><a href="#自定义ILogger日志记录器与Provider日志提供程序" class="headerlink" title="自定义ILogger日志记录器与Provider日志提供程序"></a>自定义ILogger日志记录器与Provider日志提供程序</h2><p>配置<code>ILogger</code>日志记录器：</p>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">builder.AddJsonConsole().SetMinimumLevel(LogLevel.Trace);</span><br></pre></td></tr></table></figure></div>
-
-<ul>
-<li><code>ClearProviders</code>方法：清除之前添加的提供程序，从而接着可以换成你想要的</li>
-</ul>
-<p>配置<code>Provider</code>日志提供程序：</p>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">builder.AddJsonConsole(options =&gt; &#123;  </span><br><span class="line">    options.IncludeScopes = <span class="literal">false</span>;  <span class="comment">//禁用作用域</span></span><br><span class="line">    options.TimestampFormat = <span class="string">&quot;[yyyy-MM-dd HH:mm:ss] &quot;</span>;  </span><br><span class="line">    options.JsonWriterOptions = <span class="keyword">new</span> JsonWriterOptions &#123;  </span><br><span class="line">	    Indented = <span class="literal">true</span>  <span class="comment">//以缩进形式输出JSON</span></span><br><span class="line">	&#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* &#123;</span></span><br><span class="line"><span class="comment">    &quot;Timestamp&quot;: &quot;[2025-12-12 11:15:07] &quot;,</span></span><br><span class="line"><span class="comment">    &quot;EventId&quot;: 233,</span></span><br><span class="line"><span class="comment">    &quot;LogLevel&quot;: &quot;Information&quot;,</span></span><br><span class="line"><span class="comment">    &quot;Category&quot;: &quot;Program&quot;,</span></span><br><span class="line"><span class="comment">    &quot;Message&quot;: &quot;Hello World! It is 12/12/2025 03:15:07.&quot;,</span></span><br><span class="line"><span class="comment">    &quot;State&quot;: &#123;</span></span><br><span class="line"><span class="comment">        &quot;Message&quot;: &quot;Hello World! It is 12/12/2025 03:15:07.&quot;,</span></span><br><span class="line"><span class="comment">        &quot;At&quot;: &quot;12/12/2025 03:15:07&quot;,</span></span><br><span class="line"><span class="comment">        &quot;&#123;OriginalFormat&#125;&quot;: &quot;Hello World! It is &#123;At&#125;.&quot;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125; */</span></span><br></pre></td></tr></table></figure></div>
-
-<h2 id="在appsettings-json中配置日志服务"><a href="#在appsettings-json中配置日志服务" class="headerlink" title="在appsettings.json中配置日志服务"></a>在<code>appsettings.json</code>中配置日志服务</h2><p>你不应该每次为了调整日志配置，都必须修改代码中的日志逻辑，并重新部署应用程序，而是应该将这些配置放在外部的配置文件中。</p>
-<p><code>appsettings.json</code>是大多数类型的应用程序项目模板中的标准配置文件，包括针对特定环境的版本<code>appsettings.Development.json</code>和不区分环境的通用版本<code>appsettings.json</code>。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/%E5%9C%A8appsettings.json%E4%B8%AD%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97%E6%9C%8D%E5%8A%A1.webp"
-                     
-                ></p>
-<h2 id="日志记录异常"><a href="#日志记录异常" class="headerlink" title="日志记录异常"></a>日志记录异常</h2><p>你可以捕获异常，并把它放到Log方法的第一个参数，来记录异常日志。</p>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">	<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Something went wrong&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">	logger.LogWarning(ex, <span class="string">&quot;Failure during birthday of &#123;Name&#125; who is &#123;Age&#125;&quot;</span>, name, age);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="日志过滤器"><a href="#日志过滤器" class="headerlink" title="日志过滤器"></a>日志过滤器</h2><p>通过<code>LoggingBuilder.AddFilter</code>方法设置日志过滤器，它接收返回布尔值的委托。这个委托可以不传参数，也可以传入提供程序 <code>provider</code>、类别 <code>category</code> 和级别 <code>logLevel</code>。之前设置最低日志级别时，背后就是用到了日志过滤器。</p>
-<ul>
-<li><code>AddFilter&lt;SomeProvider&gt;(类别, 级别)</code>可以针对<code>SomeProvider</code>过滤。</li>
-</ul>
-<p>不过，这种方式更可能在你为他人开发类库时派上用场，而不是在构建微服务这类服务时，因为大多数配置实际上都会放在你的 <code>appsettings.json</code> 中。但知道你拥有灵活性，以备不时之需，总是好的。</p>
-<h2 id="日志提供程序-LoggerProvider"><a href="#日志提供程序-LoggerProvider" class="headerlink" title="日志提供程序 LoggerProvider"></a>日志提供程序 LoggerProvider</h2><p>控制台是临时日志提供程序，一旦停止运行，它和它的日志缓存就不存在了，它们不是持久化的。相反，文件系统就是能够持久存储日志的提供程序。</p>
-<ul>
-<li>ASP.NET Core 显式或隐式内置了 <code>Microsoft.Extensions.Logging</code> 的 <code>Console</code>、<code>Debug</code>、<code>EventLog</code>、<code>EventSource</code> 和 <code>TraceSource</code> 提供程序。</li>
-<li>Microsoft Azure 的云端日志提供程序：<code>ApplicaitonInsights</code>。</li>
-</ul>
-<p>在控制台中配置 <code>ApplicaitonInsights</code> 提供程序：</p>
-<ul>
-<li>引入NuGet包：<ul>
-<li><code>Microsoft.ApplicaitonInsights</code></li>
-<li><code>Microsoft.Extensions.DependencyInjection</code></li>
-<li><code>Microsoft.Extensions.Options.ConfigurationExtensions</code></li>
-<li><code>Microsoft.Extensions.Logging</code></li>
-<li><code>Microsoft.Extensions.Logging.ApplicaitonInsights</code></li>
-</ul>
+<li><p>当程序运行到<code>await</code>关键字时，调用线程立即被释放，它可以自由地继续运行</p>
+</li>
+<li><p><code>await</code>将返回任务的结果，而不是结果的任务</p>
+</li>
+<li><p>使用<code>async</code>和<code>await</code>会自动管理同步上下文，<code>await</code>的延续代码将在同步上下文中执行</p>
+</li>
+<li><p>异步方法返回结果的任务，如果方法体返回<code>int</code>，则异步方法返回<code>Task&lt;int&gt;</code>；如果方法体没有返回值，则异步方法返回<code>Task</code></p>
+</li>
+<li><p>如果将异步方法的返回值类型设置为<code>void</code>，将不能在后续应用<code>Task</code>特性，不能用<code>await</code>；除非你在编写程序入口方法或实现外部API方法等不需要在后续用上<code>Task</code>特性的方法，否则不推荐这么做</p>
+</li>
+<li><p>异步方法的命名约定：在名称后加<code>Async</code>后缀，如<code>FetchDataAsync</code></p>
 </li>
 </ul>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> <span class="keyword">var</span> channel = <span class="keyword">new</span> InMemoryChannel();</span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">	IServiceCollection services = <span class="keyword">new</span> ServiceCollection();</span><br><span class="line">	services.Configure&lt;TelemetryConfiguration&gt;(x =&gt; x.TelemetryChannel = channel);</span><br><span class="line">	services.AddLogging(x =&gt;</span><br><span class="line">	&#123;</span><br><span class="line">		x.AddApplicationInsights(</span><br><span class="line">			configureTelemetryConfiguration: teleConfig =&gt;</span><br><span class="line">				teleConfig.ConnectionString = <span class="string">&quot;your_connection_string&quot;</span>,</span><br><span class="line">			configureApplicationInsightsLoggerOptions: _ =&gt; &#123;&#125;</span><br><span class="line">		);</span><br><span class="line">	&#125;);</span><br><span class="line">	<span class="keyword">var</span> serviceProvider = services.BuildServiceProvider();</span><br><span class="line">	<span class="keyword">var</span> logging = serviceProvider.GetRquiredService&lt;ILogger&lt;Program&gt;&gt;();</span><br><span class="line">	logging.LogInformation(<span class="string">&quot;Hello from console!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">await</span> channel.FlushAsync(<span class="literal">default</span>);</span><br><span class="line">	<span class="keyword">await</span> Task.Delay(<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="根据不同的运行环境配置不同的日志提供程序"><a href="#根据不同的运行环境配置不同的日志提供程序" class="headerlink" title="根据不同的运行环境配置不同的日志提供程序"></a>根据不同的运行环境配置不同的日志提供程序</h2><p>在生产环境中，你不希望日志泛滥。你需要对日志行为非常精准地控制，像在生产环境中使用控制台日志记录，可能会拖垮应用程序的性能。在 ASP.NET Core 中，<code>builder.Environment.IsDevelopment</code>方法可以返回当前是否在开发环境。</p>
-<ul>
-<li>这里要获取<code>ILoggingBuilder</code>，使用<code>builder.Logging</code>属性。</li>
-<li>与开发环境（<code>Development</code>）平行的是生产环境（<code>Production</code>）。</li>
+<h2 id="Await到底做了什么？"><a href="#Await到底做了什么？" class="headerlink" title="Await到底做了什么？"></a>Await到底做了什么？</h2><ul>
+<li>编译器会创建一个状态机对象，并以每个<code>await</code>语句作为段落结尾，来划分状态</li>
+<li>每个状态都会记录当前状态和变量集合，并捕获同步上下文</li>
+<li>每完成一个状态，它会调用<code>moveNext</code>方法，在捕获到的同步上下文中执行下一个状态</li>
+<li>通过状态集合执行包含多个<code>await</code>的异步方法</li>
 </ul>
-<h2 id="自定义日志提供程序"><a href="#自定义日志提供程序" class="headerlink" title="自定义日志提供程序"></a>自定义日志提供程序</h2><p>要自定义日志提供程序，实现<code>ILogger</code>和<code>ILoggerProvider</code>接口，并在你的<code>LoggerProvider</code>的<code>CreateLogger</code>方法中返回你的<code>Logger</code>。</p>
-<ul>
-<li><code>ILogger</code>接口：<ul>
-<li><code>TState</code>泛型：包含实际日志消息的参数的泛型</li>
-<li><code>BeginScope</code>方法：开启作用域</li>
-<li><code>IsEnabled</code>方法：返回是否启用</li>
-<li><code>Log</code>方法：如果启用，记录日志</li>
-</ul>
-</li>
-</ul>
-<h2 id="日志消息模板字符串"><a href="#日志消息模板字符串" class="headerlink" title="日志消息模板字符串"></a>日志消息模板字符串</h2><ul>
-<li><code>{Total:C}</code>：当前文化的货币格式</li>
-<li><code>{Date:F}</code>：当前文化的日期完整格式</li>
-<li><code>{Date:u}</code>：universal sortable date，通用可排序日期格式</li>
-</ul>
-<p>要实现复杂类型数据的格式化和结构化，你不得不使用<code>JsonSerializer</code>。此时，如果你又要使用<code>JsonConsole</code>，会出现JSON嵌套在JSON中的情况，你必须谨慎处理这里的序列化过程。</p>
-<h2 id="日志作用域-Log-Scope"><a href="#日志作用域-Log-Scope" class="headerlink" title="日志作用域 Log Scope"></a>日志作用域 Log Scope</h2><p>在代码中，存在一段从开始到结束都需要处理特定上下文的区域，这个上下文可能是某种特定的支付、特定的订单、购物车，或者任何在你的业务领域中有意义的内容。尽管一些日志是独立的，但它们所关联的大量数据都与特定的上下文相关。</p>
-<ul>
-<li><code>JsonConsole</code>的<code>Options</code>：<ul>
-<li><code>IncludeScopes</code>属性：是否包含作用域；为<code>true</code>时，结果中将出现<code>Scopes</code>属性，它是一个数组，包含所有上下文数据</li>
-</ul>
-</li>
-</ul>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> (logging.BeginScope(<span class="string">&quot;&#123;PaymentId&#125;&quot;</span>, paymentId))</span><br><span class="line"><span class="keyword">using</span> (logging.BeginScope(<span class="string">&quot;&#123;TotalAmount:C&#125;&quot;</span>, amount))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">try</span></span><br><span class="line">	&#123;</span><br><span class="line">		logger.LogInformation(<span class="string">&quot;New payment processing&quot;</span>);</span><br><span class="line">		<span class="comment">//processing new payment</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">finally</span></span><br><span class="line">	&#123;</span><br><span class="line">		logger.LogInformation(<span class="string">&quot;Payment processing completed&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<ul>
-<li><code>PaymentId</code>和<code>TotalAmount</code>将作为上下文数据由作用域内的所有日志共享，它们将包含在这些日志的<code>Scopes</code>数组中。</li>
-</ul>
-<h2 id="检查日志是否启用"><a href="#检查日志是否启用" class="headerlink" title="检查日志是否启用"></a>检查日志是否启用</h2><p>虽然日志提供程序通常都会在<code>Log</code>方法的开头检查是否启用，但是为以防万一，你应该在自己的代码中也加入<code>IsEnabled</code>的判断，以确保没有性能问题。</p>
-<h2 id="日志记录操作耗时"><a href="#日志记录操作耗时" class="headerlink" title="日志记录操作耗时"></a>日志记录操作耗时</h2><p>下面是利用<code>Stopwatch</code>类和日志上下文机制记录操作耗时的方法。</p>
-<p><code>Stopwatch</code>类是.NET中测量时间最精确的方案：</p>
-<ul>
-<li><code>GetTimestamp</code>静态方法：获取当前时间戳</li>
-<li><code>GetElapsedTime</code>静态方法：获取传入时间戳到现在的时间间隔</li>
-</ul>
-<p>可以用<code>Stopwatch</code>类结合作用域机制，获取并记录操作耗时。</p>
-<p>创建<code>TimedOperation</code>类，聚合<code>_logger</code>、<code>_logLevel</code>、<code>_eventId</code>、<code>_message</code> 和 <code>_args</code>，实现<code>IDisposable</code>接口：</p>
-<ul>
-<li>在构造方法中获取当前时间戳</li>
-<li>在<code>Dispose</code>方法获取时间间隔，并调用<code>_logger.Log</code>方法记录耗时日志</li>
-</ul>
-<p>创建<code>TimedOperationExtensions</code>类，扩展以支持<code>ILogger</code>接口：</p>
-<ul>
-<li><code>BeginTimedOperation</code>方法：创建并返回<code>TimedOperation</code>对象，用作上下文数据</li>
-<li>创建一个不传入<code>LogLevel</code>的<code>BeginTimedOperation</code>方法重载，并默认使用<code>Information</code>级别</li>
-</ul>
-<div class="code-container" data-rel="Cs"><figure class="iseeu highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> (logger.BeginTimedOperation(<span class="string">&quot;Handling new payment&quot;</span>))</span><br><span class="line">&#123;</span><br><span class="line">	logger.LogInformation(<span class="string">&quot;New payment processing&quot;</span>);</span><br><span class="line">	<span class="comment">//processing new payment</span></span><br><span class="line">	<span class="keyword">await</span> Task.Delay(<span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="运行时动态修改最低日志级别"><a href="#运行时动态修改最低日志级别" class="headerlink" title="运行时动态修改最低日志级别"></a>运行时动态修改最低日志级别</h2><p>在你的应用程序中，只要支持在运行时热重载或动态重载<code>appsettings.json</code>配置文件，就可以实现运行时动态修改最低日志级别这一功能。而这就是配置提供程序要做的事情了。</p>
 
 		</div>
 
@@ -691,18 +662,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> .NET日志(2)：Microsoft.Extensions.Logging包</li>
+        <li><strong>标题:</strong> .NET多线程(5)：异步编程</li>
         <li><strong>作者:</strong> xicuod</li>
         <li><strong>创建于
-                :</strong> 2025-12-12 09:49:43</li>
+                :</strong> 2026-01-27 17:40:19</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2026-01-25 19:46:11
+                    :</strong> 2026-01-27 18:03:48
             </li>
         
         <li>
-            <strong>链接:</strong> https://blog.xicuodev.top/2025/12/12/dotnet-logging-2-microsoft-extensions-logging/
+            <strong>链接:</strong> https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-5-asynchronous/
         </li>
         <li>
             <strong>
@@ -728,12 +699,12 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/12/13/dotnet-logging-3-serilog/">
+				<a class="prev" rel="prev" href="/2026/01/27/dotnet-multithreading-6-parallel-loop/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">.NET日志(3)：Serilog</span>
+						<span class="post-nav-title-item truncate max-w-48">.NET多线程(6)：并行循环</span>
 						<span class="post-nav-item">上一篇</span>
 					</span>
 				</a>
@@ -741,9 +712,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/12/12/dotnet-logging-1-introduction/">
+				<a class="next" rel="next" href="/2026/01/26/dotnet-multithreading-4-safety/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">.NET日志(1)：概论</span>
+						<span class="post-nav-title-item truncate max-w-48">.NET多线程(4)：线程安全</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -822,8 +793,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">.NET日志(2)：Microsoft.Extensions.Logging包</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%8C%96%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95-%E8%AF%AD%E4%B9%89%E5%8C%96%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95"><span class="nav-text">结构化日志记录&#x2F;语义化日志记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E7%B1%BB%E5%88%AB%E7%BA%A6%E5%AE%9A"><span class="nav-text">日志类别约定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB%E7%BA%A6%E5%AE%9A"><span class="nav-text">日志级别约定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E4%BA%8B%E4%BB%B6ID"><span class="nav-text">日志事件ID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E5%BA%94%E7%94%A8-Host"><span class="nav-text">主机应用 Host</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89ILogger%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%99%A8%E4%B8%8EProvider%E6%97%A5%E5%BF%97%E6%8F%90%E4%BE%9B%E7%A8%8B%E5%BA%8F"><span class="nav-text">自定义ILogger日志记录器与Provider日志提供程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8appsettings-json%E4%B8%AD%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97%E6%9C%8D%E5%8A%A1"><span class="nav-text">在appsettings.json中配置日志服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E5%BC%82%E5%B8%B8"><span class="nav-text">日志记录异常</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-text">日志过滤器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E6%8F%90%E4%BE%9B%E7%A8%8B%E5%BA%8F-LoggerProvider"><span class="nav-text">日志提供程序 LoggerProvider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E6%97%A5%E5%BF%97%E6%8F%90%E4%BE%9B%E7%A8%8B%E5%BA%8F"><span class="nav-text">根据不同的运行环境配置不同的日志提供程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%97%A5%E5%BF%97%E6%8F%90%E4%BE%9B%E7%A8%8B%E5%BA%8F"><span class="nav-text">自定义日志提供程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E6%B6%88%E6%81%AF%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">日志消息模板字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E4%BD%9C%E7%94%A8%E5%9F%9F-Log-Scope"><span class="nav-text">日志作用域 Log Scope</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E6%97%A5%E5%BF%97%E6%98%AF%E5%90%A6%E5%90%AF%E7%94%A8"><span class="nav-text">检查日志是否启用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95%E6%93%8D%E4%BD%9C%E8%80%97%E6%97%B6"><span class="nav-text">日志记录操作耗时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8A%A8%E6%80%81%E4%BF%AE%E6%94%B9%E6%9C%80%E4%BD%8E%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB"><span class="nav-text">运行时动态修改最低日志级别</span></a></li></ol>
+		<div class="page-title">.NET多线程(5)：异步编程</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B-vs-%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B"><span class="nav-text">多线程 vs. 异步编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Task%E7%B1%BB"><span class="nav-text">Task类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thread%E7%B1%BB-vs-Task%E7%B1%BB"><span class="nav-text">Thread类 vs. Task类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E4%BB%BB%E5%8A%A1%E4%B8%AD%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C"><span class="nav-text">从任务中返回结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E9%98%BB%E5%A1%9E-Task-Blocking"><span class="nav-text">任务阻塞 Task Blocking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E5%BB%B6%E7%BB%AD-Task-Continuation"><span class="nav-text">任务延续 Task Continuation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-text">任务的异常处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E5%90%8C%E6%AD%A5-Task-Synchronization"><span class="nav-text">任务同步 Task Synchronization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E5%8F%96%E6%B6%88-Task-Cancellation"><span class="nav-text">任务取消 Task Cancellation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Async-Await"><span class="nav-text">Async &amp; Await</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Await%E5%88%B0%E5%BA%95%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">Await到底做了什么？</span></a></li></ol>
 
 	</div>
 </div>

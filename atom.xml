@@ -6,7 +6,7 @@
   <link href="https://blog.xicuodev.top/atom.xml" rel="self"/>
   
   <link href="https://blog.xicuodev.top/"/>
-  <updated>2026-01-26T04:47:02.896Z</updated>
+  <updated>2026-01-27T10:29:41.913Z</updated>
   <id>https://blog.xicuodev.top/</id>
   
   <author>
@@ -15,6 +15,125 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>.NET多线程(8)：并发数据结构</title>
+    <link href="https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-8-concurrent-data-structures/"/>
+    <id>https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-8-concurrent-data-structures/</id>
+    <published>2026-01-27T10:27:25.962Z</published>
+    <updated>2026-01-27T10:29:41.913Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="并发栈-ConcurrentStack"><a href="#并发栈-ConcurrentStack" class="headerlink" title="并发栈 ConcurrentStack"></a>并发栈 <code>ConcurrentStack</code></h2><ul><li>并发数据结构为多线程设计，内部支持线程同步（是线程安全的），不必自己加锁</li><li>可以像使用常规栈那样使用并发栈，但出栈时只能用<code>TryPop</code>方法</li><li>其他并发数据结构大同小异，它们都实现为生产消费量身定制的<code>IProducerConsumerCollection&lt;T&gt;</code>接口，不做赘述</li></ul><h2 id="阻塞集合-BlockingCollection"><a href="#阻塞集合-BlockingCollection" class="headerlink" title="阻塞集合 BlockingCollection"></a>阻塞集合 <code>BlockingCollection</code></h2><ul><li><p>阻塞集合是个包装器，用于包装并发数据结构，主要作用于生产消费场景中的缓冲区</p></li><li><p>阻塞 (Blocking) 和边界 (Bounding)</p><ul><li>上限阻塞：缓冲区达到上限时生产者阻塞，等待消费</li><li>下限阻塞：缓冲区为空时，消费者阻塞，等待生产</li></ul></li><li><p>构造器：第二个参数是阻塞上限</p></li><li><p><code>GetConsumingEnumerable</code>方法：获取自动下限阻塞的枚举器，因此<code>foreach</code>将不停地消费下去，永无止境（如果没有元素<code>foreach</code>就阻塞，而不会退出）</p></li><li><p>输入缓冲区：操作系统本身有一个输入缓冲区，因为阻塞上限阻塞的输入就在输入缓冲区排队</p></li><li><p><code>CompleteAdding</code>方法：将集合标记为已完成</p></li><li><p><code>IsCompleted</code>属性：集合是否标记为已完成</p></li><li><p>使用上面两个成员让<code>foreach</code>主动退出</p></li><li><p><code>Channel</code>类：.NET Core 3.0+ 推出的高性能生产者-消费者队列（比 <code>BlockingCollection</code> 更适合异步场景）</p></li></ul><h2 id="通道-Channel"><a href="#通道-Channel" class="headerlink" title="通道 Channel"></a>通道 <code>Channel</code></h2><ul><li><p><code>Channel</code>是<code>ConcurrentQueue</code>并发队列的包装器</p></li><li><p><code>CreatUnbounded</code>静态方法：无边界的，适用于生产慢于消费，或有限生产</p></li><li><p><code>CreatBounded</code>静态方法：有边界的，适用于生产快于消费</p></li><li><p><code>BoundedChannelOptions</code>类：</p><ul><li><code>FullMode</code>&#x3D;通道满了怎么办：<code>Wait</code>&#x3D;阻塞生产；<code>DropNewest</code>&#x3D;丢掉最新；<code>DropOldest</code>&#x3D;丢掉最老；<code>DropWrite</code>&#x3D;丢掉当前</li><li><code>SingleReader</code>&#x3D;是否只能有一个消费者；<code>SingleWriter</code>&#x3D;是否只能有一个生产者</li></ul></li><li><p>同步方法：</p><ul><li><code>ChannelWriter.TryWrite</code>方法：<code>out</code>输出写入的资源，本身返回是否成功</li><li><code>ChannelReader.TryRead</code>方法：同上理</li></ul></li><li><p>异步方法：</p><ul><li><code>ChannelWriter.WriteAsync</code>方法</li><li><code>ChannelReader.ReadAsync</code>方法</li></ul></li></ul>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;并发栈-ConcurrentStack&quot;&gt;&lt;a href=&quot;#并发栈-ConcurrentStack&quot; class=&quot;headerlink&quot; title=&quot;并发栈 ConcurrentStack&quot;&gt;&lt;/a&gt;并发栈</summary>
+        
+      
+    
+    
+    
+    <category term="编程" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    <category term="C#技术栈" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    
+    <category term=".NET多线程" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>.NET多线程(7)：并行LINQ（PLINQ）</title>
+    <link href="https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-7-plinq/"/>
+    <id>https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-7-plinq/</id>
+    <published>2026-01-27T10:18:48.518Z</published>
+    <updated>2026-01-27T10:29:34.151Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>集合的数据量非常庞大时，适合使用并行LINQ（PLINQ）</li><li><code>AsParallel</code>方法：获取集合的<code>ParallelQuery</code>对象，然后就可以像使用一般<code>LINQ</code>一样使用<code>PLINQ</code>，如<code>items.AsParallel().Where(...)</code></li><li><code>ParallelQuery</code>的<code>AsOrdered</code>方法：在并行处理的同时保持顺序，这肯定会降低性能，但重要的是搞清楚你的需求</li><li><code>ParallelQuery</code>的<code>ForAll</code>方法：对并行查询集合的每个元素做特定处理</li></ul><h2 id="PLINQ工作原理"><a href="#PLINQ工作原理" class="headerlink" title="PLINQ工作原理"></a>PLINQ工作原理</h2><ul><li><p>PLINQ工作原理：生产者-缓冲区-消费者</p></li><li><p>自定义缓冲区大小： <code>ParallelQuery</code>的<code>WithMergeOptions</code>方法、<code>ParallelMergeOptions</code>枚举</p><ul><li><code>NotBuffered</code>：不缓冲，一生产就消费；但仍然有缓冲区，因为生产消费速度不一致；一次仍然可能生产多个产品，只是不设不可消费的阈值</li><li><code>FullyBuffered</code>：消费之前完全缓冲，先完成所有生产工作再消费</li></ul></li><li><p><code>Merge</code>：将所有数据分区合并成一个</p></li><li><p><code>foreach</code>遍历中存在合并行为：<code>foreach</code>在主线程消费，PLINQ需要先在工作线程合并生产集合，再给到主线程</p></li><li><p><code>ForAll</code>遍历中不存在合并行为：同一个工作线程同时用于生产和消费，此时<code>FullyBuffered</code>不起作用</p></li><li><p>如果你有些任务不需要合并集合，你应该用<code>ForAll</code>遍历</p><ul><li>这在一定程度上替代了<code>Stream</code>流的功能</li></ul></li><li><p><code>ForAll</code>方法会抛出聚合异常，在这样的消费者外部使用<code>try-catch</code></p></li><li><p>对于聚合异常，可以使用<code>Handle</code>方法，传入异常处理委托，这将遍历<code>InnerExceptions</code>集合，最后需要返回是否处理成功的布尔值</p></li><li><p>使用<code>WithCancellation</code>方法来使用取消令牌：当令牌取消时，所有线程将尽快退出，已经进入的迭代仍会完成</p></li><li><p>操作取消异常<code>OperationCanceledException</code>不会放到聚合异常中</p></li></ul><h2 id="PLINQ的性能考虑"><a href="#PLINQ的性能考虑" class="headerlink" title="PLINQ的性能考虑"></a>PLINQ的性能考虑</h2><p>如果迭代任务不是过于繁重，则PLINQ的性能不如LINQ；因为对于较为轻松的工作，创建、启动线程等线程相关操作耗时太长。</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;集合的数据量非常庞大时，适合使用并行LINQ（PLINQ）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;AsParallel&lt;/code&gt;方法：获取集合的&lt;code&gt;ParallelQuery&lt;/code&gt;对象，然后就可以像使用一般&lt;code&gt;LINQ&lt;/code&gt;一样使用&lt;</summary>
+        
+      
+    
+    
+    
+    <category term="编程" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    <category term="C#技术栈" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    
+    <category term=".NET多线程" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>.NET多线程(6)：并行循环</title>
+    <link href="https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-6-parallel-loop/"/>
+    <id>https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-6-parallel-loop/</id>
+    <published>2026-01-27T10:07:00.143Z</published>
+    <updated>2026-01-27T10:18:41.771Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>并行循环（parallel loop）：<code>Parallel.For(int 起点含, int 终点不含, Action 循环体委托)</code></li><li>这将在不同线程中共享循环体的资源，你需要上锁实现同步访问</li><li><code>For</code>：有序集合；<code>ForEach</code>：无序集合+有序集合</li><li><code>Parallel.Invoke(委托集合)</code>：并行运行委托集合的所有方法</li><li>循环任务必须足够繁重（串行性能非常差），才适合并行循环</li></ul><h2 id="并行循环的原理"><a href="#并行循环的原理" class="headerlink" title="并行循环的原理"></a>并行循环的原理</h2><ul><li>数据分区：分治法，把集合分成特定个部分，并创建等量的线程</li><li>主要使用线程池线程</li><li>试图替开发者做出最佳决策</li><li>阻塞调用，不需要<code>Wait</code></li></ul><h2 id="并行循环的异常处理"><a href="#并行循环的异常处理" class="headerlink" title="并行循环的异常处理"></a>并行循环的异常处理</h2><ul><li>如果有任何一个线程出现异常，则所有线程不会进入下一次迭代</li><li>所有异常将组合为一个<code>AggregateException</code>抛出，在并行循环外部<code>try-catch</code></li><li>并行任务通常都会将所有线程的异常组合为一个聚合异常抛出</li><li>如果每次迭代的耗时较长，当一个线程异常时，你想要立即停止其他线程，可以使用两个参数的委托的重载，第二个参数就是并行循环的当前状态，其<code>IsExceptional</code>属性指出了是否有线程出现异常，以便快速退出本次迭代</li></ul><h2 id="并行循环的主动干预"><a href="#并行循环的主动干预" class="headerlink" title="并行循环的主动干预"></a>并行循环的主动干预</h2><ul><li>状态的<code>Stop</code>方法和<code>IsStopped</code>属性配合使用，可以主动停止各线程</li><li>状态的<code>Break</code>方法和<code>ShouldExitCurrentIteration</code>（应该退出当前迭代）、<code>LowestBreakIteration</code>（<code>Break</code>的线程中最小的迭代位置）属性配合使用，可以使整体集合完整迭代到特定位置停止：<ul><li><code>if (state.ShouldExitCurrentIteration &amp;&amp; state.LowestBreakIteration &lt; i) return;</code></li></ul></li></ul><h2 id="Break方法怎么使并行循环“完整地”迭代到特定进度？"><a href="#Break方法怎么使并行循环“完整地”迭代到特定进度？" class="headerlink" title="Break方法怎么使并行循环“完整地”迭代到特定进度？"></a><code>Break</code>方法怎么使并行循环“完整地”迭代到特定进度？</h2><ul><li>0到100遍历，分成3个线程：0-33、33-66、66-100</li><li>线程1到30、线程2到<code>60</code>、线程3到<code>90</code>时，线程2和3的状态调用<code>Break</code>，它们立即退出，此时<code>ShouldExitCurrentIteration</code>为<code>true</code>， <code>LowestBreakIteration</code>为<code>60</code></li><li>线程1的<code>i</code>&#x3D;<code>30</code>&lt;<code>LowestBreakIteration</code>，所以它继续执行直到完成</li><li>最后，整体迭代进度停留在<code>60</code></li></ul><h2 id="为什么Break时选用LowestBreakIteration？"><a href="#为什么Break时选用LowestBreakIteration？" class="headerlink" title="为什么Break时选用LowestBreakIteration？"></a>为什么<code>Break</code>时选用<code>LowestBreakIteration</code>？</h2><ul><li><code>Break</code>的线程将立即退出，这意味着该线程负责的部分永远无法迭代完成</li><li>最小的迭代位置 (<code>LowestBreakIteration</code>) 意味着负责它前面那些部分的线程没有<code>Break</code></li><li>等到这些线程完成迭代，整体迭代进度到达最小迭代位置</li><li>这是符合<code>Break</code>语义的：<code>迭代到65退出 &amp;&amp; 迭代到80退出 == 迭代到65退出</code>，<code>65</code>是最小迭代位置</li></ul><h2 id="并行循环结果-ParallelLoopResult"><a href="#并行循环结果-ParallelLoopResult" class="headerlink" title="并行循环结果 ParallelLoopResult"></a>并行循环结果 ParallelLoopResult</h2><ul><li>当你接收并行循环返回的结果时，它是阻塞的</li><li><code>IsCompleted</code>属性：是否迭代完成</li><li><code>LowestBreakIteration</code>属性：<code>Break</code>的线程中最小的迭代位置；如果是因为<code>Stop</code>或抛出异常停止迭代，则它的值为<code>null</code></li></ul><h2 id="并行循环取消"><a href="#并行循环取消" class="headerlink" title="并行循环取消"></a>并行循环取消</h2><ul><li>使用<code>ParallelOptions</code>和<code>CancellationTokenSource</code>类</li><li><code>new ParallelOptions { CancellationToken = cts.Token }</code></li><li><code>Parallel.For(0, 1000, options, 循环体委托)</code></li><li>当调用<code>token.Cancel()</code>时，<code>Parallel.For</code>抛出<code>TaskCanceledException</code></li></ul><h2 id="并行循环中的线程本地存储"><a href="#并行循环中的线程本地存储" class="headerlink" title="并行循环中的线程本地存储"></a>并行循环中的线程本地存储</h2><ul><li>线程本地存储（thread local storage）：每个线程自己内部使用的变量；分治法</li><li><code>Parallel.For(0, 100, lcoalInit, (i,state,tls)=&gt;{}, localFinally)</code><ul><li><code>localInit</code>参数：委托，初始化<code>tls</code>并返回</li><li><code>localFinally</code>参数：委托，线程完成枚举时处理<code>tls</code>，依然是线程的一部分，使用共享资源时需要加锁同步</li></ul></li></ul>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;并行循环（parallel loop）：&lt;code&gt;Parallel.For(int 起点含, int 终点不含, Action</summary>
+        
+      
+    
+    
+    
+    <category term="编程" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    <category term="C#技术栈" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    
+    <category term=".NET多线程" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>.NET多线程(5)：异步编程</title>
+    <link href="https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-5-asynchronous/"/>
+    <id>https://blog.xicuodev.top/2026/01/27/dotnet-multithreading-5-asynchronous/</id>
+    <published>2026-01-27T09:40:19.023Z</published>
+    <updated>2026-01-27T10:03:48.444Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="多线程-vs-异步编程"><a href="#多线程-vs-异步编程" class="headerlink" title="多线程 vs. 异步编程"></a>多线程 vs. 异步编程</h2><ul><li>多线程与异步编程二者本质上相同，只是侧重点不同</li><li>多线程侧重于分而治之的场景，异步编程侧重于卸载长时间运行的任务（详见<a href="/2026/01/25/dotnet-multithreading-1-basic/#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%9F" title=".NET多线程(1)：多线程基础">为什么要使用多线程</a>）</li><li>多线程适用于CPU密集型操作，异步编程适用于I&#x2F;O密集型操作</li><li>I&#x2F;O操作：访问本地文件、访问数据库、访问互联网</li></ul><h2 id="Task类"><a href="#Task类" class="headerlink" title="Task类"></a><code>Task</code>类</h2><ul><li>构造器：<code>new Task(委托)</code></li><li><code>Start</code>方法</li><li>更常见的写法：<code>var task = Task.Run(委托)</code></li><li><code>Task</code>对象中封装了许多实用数据和功能</li><li>使用<code>Task.Delay(毫秒数)</code>，而不是<code>Thread.Sleep(毫秒数)</code></li></ul><h2 id="Thread类-vs-Task类"><a href="#Thread类-vs-Task类" class="headerlink" title="Thread类 vs. Task类"></a><code>Thread</code>类 vs. <code>Task</code>类</h2><ul><li><code>Task</code>是一个承诺（<code>Promise</code>）：它不一定涉及线程，只是承诺在未来某个时间完成任务</li><li>推荐使用<code>Task</code>类而不是<code>Thread</code>类，因为<code>Task</code>类是更高级别的抽象，开箱即用，而<code>Thread</code>类更底层<ul><li>默认使用线程池；从任务中返回结果；简单的任务延续；更好异常处理</li><li><code>Async</code>&#x2F;<code>Await</code>：使编写异步代码像编写同步代码一样；便于同步上下文，解决线程亲和性问题</li></ul></li></ul><h2 id="从任务中返回结果"><a href="#从任务中返回结果" class="headerlink" title="从任务中返回结果"></a>从任务中返回结果</h2><ul><li><code>Task.Run(委托)</code>返回的<code>Task&lt;T&gt;</code>中的泛型<code>T</code>就是返回值类型</li><li><code>Result</code>属性：委托方法的返回值</li></ul><h2 id="任务阻塞-Task-Blocking"><a href="#任务阻塞-Task-Blocking" class="headerlink" title="任务阻塞 Task Blocking"></a>任务阻塞 Task Blocking</h2><ul><li><code>Wait</code>方法：阻塞调用线程，直到任务完成</li><li><code>WaitAll</code>静态方法：阻塞调用线程，直到所有任务完成</li><li><code>Result</code>属性：阻塞调用线程，直到任务完成并返回结果</li></ul><h2 id="任务延续-Task-Continuation"><a href="#任务延续-Task-Continuation" class="headerlink" title="任务延续 Task Continuation"></a>任务延续 Task Continuation</h2><ul><li><p><code>ContinueWith</code>方法：创建一个工作线程，执行传入的委托，委托提供主调<code>Task</code>对象的参数</p></li><li><p><code>WhenAll</code>静态方法：接收并返回<code>Task</code>数组，表示当所有<code>Task</code>完成时</p></li><li><p><code>WhenAny</code>静态方法：接收<code>Task</code>数组，返回<code>Task</code>，表示当任一<code>Task</code>完成时</p></li><li><p>配合<code>ContinueWith</code>或<code>await</code>使用，让<code>When</code>返回的任务实际运行起来</p></li><li><p>延续链（continuation chain）：你可以链式使用<code>ContinueWith</code>，形成一条任务链 <code>Task&lt;Task&lt;string&gt;&gt;</code></p></li><li><p>拆包装（unwrap）：但你并不想要 <code>Task&lt;Task&lt;string&gt;&gt;</code> 这种套娃的怪东西，因此需要用到<code>Unwrap</code>方法，它将执行里面的<code>Task</code>，并返回<code>Task&lt;string&gt;</code></p></li><li><p><code>Unwrap</code>也是非阻塞的，它会在工作线程中执行相关操作</p></li></ul><h2 id="任务的异常处理"><a href="#任务的异常处理" class="headerlink" title="任务的异常处理"></a>任务的异常处理</h2><ul><li><p>任务中的异常是隐藏的，不会影响主线程继续运行</p></li><li><p>对任务使用外部<code>try-catch</code>不起作用</p><ul><li>任何在委托外部的<code>try-catch</code>都是无稽之谈，因为委托一般不会就地执行</li></ul></li><li><p>异常存储在任务本身中：<code>Status</code>属性（异常时值为<code>Faulted</code>故障）和<code>Exception</code>属性（<code>System.AggregateException</code>类，存储所有异常）</p></li><li><p>可以迭代这些异常：<code>task.Exception.InnerExceptions</code>属性</p></li><li><p>使用<code>Wait</code>或<code>Result</code>：抛出任务的<code>AggregateException</code></p></li><li><p><code>ContinueWith</code>方法有个重载，第二个参数为<code>TaskContinuationOptions</code>枚举，设置为<code>NotOnFaulted</code>就会抛出<code>AggregateException</code></p></li><li><p>使用<code>await</code>：如果有任何异常，直接抛出，不再延续执行</p></li></ul><h2 id="任务同步-Task-Synchronization"><a href="#任务同步-Task-Synchronization" class="headerlink" title="任务同步 Task Synchronization"></a>任务同步 Task Synchronization</h2><ul><li>任务同步和线程同步的办法完全一样</li><li>任务同步：<code>lock</code>关键字、监视器、互斥锁和读写锁</li><li>任务交互：信号量、自动重置事件和手动重置事件</li></ul><h2 id="任务取消-Task-Cancellation"><a href="#任务取消-Task-Cancellation" class="headerlink" title="任务取消 Task Cancellation"></a>任务取消 Task Cancellation</h2><ul><li>任务取消和线程取消的办法别无二致</li><li>设置一个共享的标志变量，如 <code>bool cancelTask</code></li><li>更好的做法：<code>CancellationTokenSource</code>类（非托管资源，使用<code>using</code>）<ul><li>获取令牌：<code>Token</code>属性（<code>CancellationToken</code>类）</li><li>请求取消：<code>Cancel</code>方法</li><li>是否请求取消：<code>IsCancellationRequested</code>属性</li><li>超时取消：<code>CancelAfter</code>方法，若取消，应抛出<code>OperationCanceledException</code>；为此，推荐使用<code>ThrowIfCancellationRequested</code>方法</li><li>异步方法API通常都有个重载接收<code>CancellationToken</code>来实现取消异步操作，如<code>HttpClient</code>类<code>GetStringAsync</code>方法的第二个参数</li></ul></li></ul><h2 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async &amp; Await"></a>Async &amp; Await</h2><ul><li><p>使用<code>async</code>修饰异步方法，并在异步任务前加<code>await</code>，使编写异步代码看起来就像在编写同步代码</p></li><li><p>当你在主线程调用异步方法时，它将在一个工作线程中异步执行</p></li><li><p>在异步方法中，<code>await</code>之后的所有内容都是异步任务的延续</p><ul><li><code>await</code>之前的内容在主线程上执行，之后的内容在工作线程上执行</li></ul></li><li><p>当程序运行到<code>await</code>关键字时，调用线程立即被释放，它可以自由地继续运行</p></li><li><p><code>await</code>将返回任务的结果，而不是结果的任务</p></li><li><p>使用<code>async</code>和<code>await</code>会自动管理同步上下文，<code>await</code>的延续代码将在同步上下文中执行</p></li><li><p>异步方法返回结果的任务，如果方法体返回<code>int</code>，则异步方法返回<code>Task&lt;int&gt;</code>；如果方法体没有返回值，则异步方法返回<code>Task</code></p></li><li><p>如果将异步方法的返回值类型设置为<code>void</code>，将不能在后续应用<code>Task</code>特性，不能用<code>await</code>；除非你在编写程序入口方法或实现外部API方法等不需要在后续用上<code>Task</code>特性的方法，否则不推荐这么做</p></li><li><p>异步方法的命名约定：在名称后加<code>Async</code>后缀，如<code>FetchDataAsync</code></p></li></ul><h2 id="Await到底做了什么？"><a href="#Await到底做了什么？" class="headerlink" title="Await到底做了什么？"></a>Await到底做了什么？</h2><ul><li>编译器会创建一个状态机对象，并以每个<code>await</code>语句作为段落结尾，来划分状态</li><li>每个状态都会记录当前状态和变量集合，并捕获同步上下文</li><li>每完成一个状态，它会调用<code>moveNext</code>方法，在捕获到的同步上下文中执行下一个状态</li><li>通过状态集合执行包含多个<code>await</code>的异步方法</li></ul>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;多线程-vs-异步编程&quot;&gt;&lt;a href=&quot;#多线程-vs-异步编程&quot; class=&quot;headerlink&quot; title=&quot;多线程 vs. 异步编程&quot;&gt;&lt;/a&gt;多线程 vs.</summary>
+        
+      
+    
+    
+    
+    <category term="编程" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    <category term="C#技术栈" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    
+    <category term=".NET多线程" scheme="https://blog.xicuodev.top/categories/%E7%BC%96%E7%A8%8B/C-%E6%8A%80%E6%9C%AF%E6%A0%88/NET%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>.NET多线程(4)：线程安全</title>
