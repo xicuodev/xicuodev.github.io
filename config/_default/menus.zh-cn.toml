@@ -1,0 +1,47 @@
+[[main]]
+none = "none"
+
+[[main]]
+name = "博文"
+pre = "code"
+pageRef = "posts"
+weight = 10
+
+[[main]]
+name = "笔记"
+pre = "pencil"
+pageRef = "notes"
+weight = 20
+
+[[main]]
+name = "分类"
+pre = "list"
+pageRef = "categories"
+weight = 30
+
+[[main]]
+name = "标签"
+pre = "tag"
+pageRef = "tags"
+weight = 40
+
+# [[main]]
+# name = "系列"
+# pre = "list-ol"
+# pageRef = "series"
+# weight = 50
+
+[[main]]
+name = "关于"
+pre = "circle-info"
+pageRef = "about"
+weight = 60
+
+[[main]]
+name = "友链"
+pre = "link"
+pageRef = "friends"
+weight = 70
+
+[[footer]]
+none = "none"

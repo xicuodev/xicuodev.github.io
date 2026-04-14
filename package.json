@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "firebase": "^12.9.0"
+  },
+  "devDependencies": {
+    "gray-matter": "^4.0.3",
+    "hugo-lunr-zh": "^2.0.0",
+    "nodejieba": "^3.5.2"
+  }
+}

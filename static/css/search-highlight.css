@@ -1,0 +1,11 @@
+.search-highlight {
+  background-color: #fef08a;
+  color: #713f12;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.dark .search-highlight {
+  background-color: #854d0e;
+  color: #fef08a;
+}
