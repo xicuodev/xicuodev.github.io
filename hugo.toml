@@ -1,0 +1,29 @@
+baseURL = "https://blog.xicuodev.top/"
+locale = "zh-cn"
+title = "系错博客 XiCBlog"
+author = "xicuod"
+copyright = "copyright © 2026, xicuod."
+languageCode = "zh-CN"
+# theme = "ananke"
+
+## hugo-bearblog ##
+theme = "hugo-bearblog"
+
+# Generate a nice robots.txt for SEO
+enableRobotsTXT = true
+
+# Generate "Bearblog"-like URLs !only!, see https://bearblog.dev/.
+disableKinds = ["taxonomy"]
+ignoreErrors = ["error-disable-taxonomy"]
+[permalinks]
+  blog = "/:slug/"
+  tags = "/tag/:slug"
+
+# Configure markup highlighter to match "Bearblog" aesthetics, see
+# https://gohugo.io/configuration/markup/#highlight
+[markup]
+  [markup.highlight]
+    style = "dracula"
+    lineNos = true
+    lineNumbersInTable = false
+    codeFences = true
