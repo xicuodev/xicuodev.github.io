@@ -2,9 +2,9 @@
 name: 部署 Hugo 站点到 Pages
 
 on:
-  # 针对默认分支的推送触发
+  # 针对v2分支的推送触发
   push:
-    branches: ["main"]
+    branches: ["v2"]
 
   # 允许从 Actions 标签手动运行
   workflow_dispatch:
