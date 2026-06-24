@@ -8,4 +8,4 @@ weight: 100
 
 - [witw 的技术与创作交流平台](https://witw.top/ "witw 的技术与创作交流平台")
 
-  ![witw 的技术与创作交流平台](https://img.xicuodev.top/2026/02/81e5b2e678fd5fe3c550c631c748433e.png "witw 的技术与创作交流平台")
+  ![witw 的技术与创作交流平台](https://img.xicuodev.top/2026/06/fb2d5766be1e678ae49799527624ddbc.webp "witw 的技术与创作交流平台")
