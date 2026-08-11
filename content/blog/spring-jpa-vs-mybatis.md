@@ -1,26 +1,25 @@
 ---
 date: 2026-04-04T23:01:41+08:00
-slug: spring-jpa-vs-mybatis
-title: Spring JPA、MyBatis、DDD 和 CQRS 串讲
+slug: spring-data-jpa-vs-mybatis-plus
 tags:
 - 对象关系映射
 - 领域驱动设计
 - 命令-查询职责分离
+title: Spring Data JPA、MyBatis-Plus、DDD 和 CQRS 串讲
 ---
-## Spring Data JPA 与 MyBatis 的区别
+## Spring Data JPA 与 MyBatis-Plus 的区别
 
-JPA 是对象优先（object-centric），它把 SQL 操作封装起来，你只管操作 Java 对象，它负责生成 SQL；MyBatis 是 SQL 优先（SQL-centric），让你在 Java 代码中写 SQL，支持更细粒度的 SQL 控制。
+Spring Data JPA（下称 JPA）是以对象中心的（object-centric），它把 SQL 操作封装起来，你只管操作 Java 对象，它负责生成 SQL；MyBatis-Plus（下称 MP）是以 SQL 中心的（SQL-centric），它让你可以在 Java 代码中方便地构建复杂的查询逻辑，支持更细粒度的 SQL 控制。
 
-- JPA 的优点：适合关联复杂的数据架构，事务管理可以做到强一致性，适合微服务和领域驱动设计，用它的大部分都是微服务和领域驱动设计的项目。领域驱动设计的一个好处是可以减少关联查询，多表关联是性能很差的操作，应当淘汰。
-- JPA 的缺点：JPA 做动态 SQL 很难，也就是说它难做复杂的查询逻辑。
+- JPA 的优点：适合关联复杂的数据架构，事务管理可以做到强一致性，适合微服务和领域驱动设计，用它的大部分都是微服务和领域驱动设计的项目。领域驱动设计的一个好处是可以减少关联查询，多表关联是性能很差的操作，应当淘汰。JPA 的缺点：JPA 做动态 SQL 很难，也就是说它难做复杂的查询逻辑。
+- MP 的优点：好做动态 SQL 和 SQL 调优。MP 的缺点：难以处理关联查询的 n+1 问题。
 
-- MyBatis 的优点：好做动态 SQL，SQL 调优。
-- MyBatis 的缺点：难以处理关联查询的 n+1 问题。
+JPA 在国外很火，但在国内不温不火。国内基本上都是用 MP，可能做微服务比较成熟的厂用 JPA 要多一点。
 
-Spring JPA 在国外很火，但在国内不温不热，国内基本上都是用 MyBatis，可能做微服务比较成熟的厂用 JPA 要多一点。
+## 领域驱动设计(DDD)的持久层基础设施的实现
 
-## 领域驱动设计的持久层基础设施的实现
+领域驱动设计（DDD，domain-driven design）的持久层基础设施的一个实现方案是 CQRS 的持久层实现：业务用 JPA，查询用 MP。
 
-领域驱动设计（DDD，domain-driven design）的持久层基础设施的一个实现方案是 CQRS：业务用 JPA，查询用 MyBatis。
+CQRS（command query responsibility segregation，命令和查询职责分离）的核心是命令和查询的业务处理逻辑职责分离，这将应用层和持久层又纵向分为 Command 和 Query 两侧。对于持久层，建议 Command 侧用 JPA，Query 侧用 MP。把工具用在它最擅长的地方，各司其职。
 
-CQRS（command query responsibility segregation，命令和查询职责分离）的核心是读写分离，写数据的时候用 JPA，读数据的时候用 MyBatis。把工具用在它最擅长的地方，各司其职。
+值得注意的是，Command 侧仍需要先读数据构建聚合根，才能开展下一步领域操作，此时 JPA 强大的关联查询能力就可派上用场。注意，Command 侧的查询只是为了从持久层读取并构建聚合根，其目的是为了完成写入操作。不应该因为是查询逻辑就跑去依赖 Query 侧的查询逻辑，这样会导致 CQ 两侧耦合，违背了 CQRS 命令查询职责分离的原则。因此，JPA 在 Command 侧仍需要发挥其查询能力。

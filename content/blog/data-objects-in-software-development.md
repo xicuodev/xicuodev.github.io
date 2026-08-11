@@ -1,8 +1,7 @@
 ---
 date: 2026-04-12T11:59:03+08:00
-categories:
-- 软件开发
 tags:
+- 软件开发
 - 领域驱动设计
 slug: data-objects-in-software-development
 title: 软件开发中的数据载体：VO、DTO、DO 和 PO
@@ -15,12 +14,12 @@ POJO 是泛化概念，而非特指某一种业务对象，DO、DTO、VO 等数�
 
 ## 各架构层级下的行为主体和数据载体一览表
 
-| 架构层级            | 行为主体                                                                     | 数据载体                                         |
-| ------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------ |
-| 表现层 Presentation | Controller 控制器, ViewResolver 视图解析器                                   | **VO**, Query, Command                           |
-| 应用层 Application  | Application Service 应用服务                                                 | **DTO**, BO, TO                                  |
-| 领域层 Domain       | Domain Entity 领域实体, Value Object 值对象, 聚合根, Domain Service 领域服务 | **领域实体**, **值对象**, 领域 DO                |
-| 持久层 Persistence  | Repository 仓储接口, Mapper 映射器                                           | **PO**, Database Entity 数据库实体, DAO, 数据 DO |
+| 架构层级            | 行为主体                                                                        | 数据载体                                         |
+| ------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------ |
+| 表现层 Presentation | Controller (控制器), ViewResolver (视图解析器)                                  | **VO**, Response                                 |
+| 应用层 Application  | ApplicationService (应用服务), **QueryHandler & CommandHandler** (CQRS)         | **DTO**, BO, TO, **Query & Command** (CQRS)      |
+| 领域层 Domain       | DomainEntity (领域实体), ValueObject (值对象), 聚合根, DomainService (领域服务) | **领域实体**, **值对象**, 领域DO                 |
+| 持久层 Persistence  | Repository 仓储接口, Mapper 映射器                                              | **PO**, DatabaseEntity (数据库实体), DAO, 数据DO |
 
 ## DTO “克制”的设计原则
 
