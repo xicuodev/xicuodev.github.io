@@ -1,10 +1,11 @@
-+++
-title = "Cloudflare R2 对象存储客户端的几种方案"
-slug = "cloudflare-r2-clients"
-date = "2026-06-21T18:26:00+08:00"
-tags = ["Cloudflare","图床"]
-+++
-
+---
+slug: cloudflare-r2-clients
+date: 2026-06-21T18:26:00+08:00
+title: Cloudflare R2 对象存储客户端的几种方案
+tags:
+  - Cloudflare
+  - 图床
+---
 1. [PicList](https://piclist.cn/)或[PicGo](https://docs.picgo.app/zh/gui/)：使用S3 API或[社区插件](https://github.com/JYbill/picgo-plugin-cloudflare-r2)上传图片 记得勾选“设置-上传-上传处理-相册内删除时同步删除云端文件” 参考[这篇文章](https://eastondev.com/blog/zh/posts/dev/20251130-r2-picgo-setup/#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E9%85%8D%E7%BD%AE-s3-%E5%9B%BE%E5%BA%8A%E5%8F%82%E6%95%B0) 尤其关于文件路径 占位符参考S3插件的[README.md](https://github.com/wayjam/picgo-plugin-s3)：
    > 文件路径（Upload Path）推荐几种格式：
    > 

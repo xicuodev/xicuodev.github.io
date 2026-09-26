@@ -3,7 +3,6 @@ date: 2026-07-24T10:34:00+08:00
 slug: idea-liquidbase-hibrenate-json
 title: 让Spring Data JPA和Liquibase能够处理JSON类型的Hibernate ORM映射的JPA注解（含JDK8和11两种方案）
 ---
-
 [Jakarta Persistence](https://jakarta.ee/learn/docs/jakartaee-tutorial/current/persist/persistence-intro/persistence-intro.html)（原名Java Persistence，简称JPA）是Java持久化规范，它定义了一套Java持久化的标准接口、注解（如`@Entity`、`@Table`、`@Column`）和查询语言（JPQL）。JPA是一套抽象的API规范，不是具体的代码实现。[Hibernate](https://hibernate.org/)是Java的一个具体的ORM框架，早在JPA规范诞生之前就已经存在并广泛应用。JPA规范的拟定大量借鉴了Hibernate的设计思想，而Hibernate也对JPA规范做了完整的实现，同时Hibernate还包含更多自己特有的高级特性。因此，Hibernate是JPA的超集。
 
 [Liquibase](https://www.liquibase.com/)是Java生态中的一个数据库迁移脚本（Liquibase称之为“更新日志”，changelog）的生成和管理工具，它本身也是Java写的。Liquibase更新日志支持XML、YAML、JSON和SQL四种格式，它的生成有两种方式，一种是手动编写，另一种是比对最新更新日志和当前数据库架构，根据二者之间的差异生成新的更新日志（过程和Git的diff差异算法是一个道理）。IntelliJ IDEA捆绑集成的[Liquibase插件](https://www.jetbrains.com/help/idea/liquibase.html)可以读取Java实体类中的JPA注解，将其与当前数据库架构比对差异，据此生成Liquibase更新日志并执行它（也就是将更新日志中的更改实际作用于数据库），用于管理数据库架构（schema）的版本。

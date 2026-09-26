@@ -3,7 +3,6 @@ date: 2026-09-09T09:16:21+08:00
 slug: git-use-different-local-user
 title: Git在特定仓库使用特定提交用户
 ---
-
 我一般都是用SSH方式提交远程仓库的，所以可以在`~/.ssh/config`设置一个Host别名，专门用于小号`xicuod`的提交。
 
 ```sh

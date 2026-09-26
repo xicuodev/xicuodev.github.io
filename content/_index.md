@@ -4,16 +4,16 @@ title: 关于
 menu: main
 weight: 1
 ---
-你好，我叫系错，是一名立志开发出好用又美观的客户端软件的准程序员。“系错”(英文是“XiCuod”)是我的网名，寓意是“(没有)系统错误”。我目前正在学习 Java 技术栈。
+你好，我叫系错，是一名立志开发出好用又美观的客户端软件的准程序员。“系错”(英文是“XiCuod”)是我的网名，寓意是“(没有)系统错误”。我目前正在学习Java技术栈。
 
 - 我的邮箱：[xicuod@outlook.com](mailto:xicuod@outlook.com)
-- 我的 GitHub 用户页：[xicuodev (XiCuod)](https://github.com/xicuodev "xicuodev (XiCuod)")
+- 我的GitHub：[xicuodev (XiCuod)](https://github.com/xicuodev "xicuodev (XiCuod)")
 
-这个博客主要用于存放我学习技术的过程中产出的一些[笔记和心得]({{< ref blog >}})。当然，要是这些文字能帮到你，那就太好了！如果发现哪里有疏漏的话还请不吝在评论区指出，一起交流，共同进步~
+这个博客主要用于存放我学习技术的过程中产出的一些[笔记和心得]( {{< ref blog >}} )。当然，要是这些文字能帮到你，那就太好了！如果发现有所疏漏的话可以发我邮件，让我知道，我感激不尽。一起交流，共同进步！
 
-- 这个博客的 GitHub 仓库页：[xicuodev/xicuodev.github.io](https://github.com/xicuodev/xicuodev.github.io "xicuodev/xicuodev.github.io")
+- 这个博客的GitHub仓库：[xicuodev/xicuodev.github.io](https://github.com/xicuodev/xicuodev.github.io "xicuodev/xicuodev.github.io")
 
-这个博客使用 [Hugo 框架](https://gohugo.io/) 构建，采用 [Hugo Bear Blog 主题](https://github.com/janraasch/hugo-bearblog/) 个性化。我非常认同这个主题的宗旨：
+这个博客使用[Hugo](https://gohugo.io/)框架，并采用[Hugo Bear Blog](https://github.com/janraasch/hugo-bearblog/)主题。笔者很认同这个主题的宗旨：
 
 > ### A match made in heaven 天作之合
 > 
