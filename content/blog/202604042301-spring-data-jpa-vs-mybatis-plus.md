@@ -1,7 +1,7 @@
 ---
 date: 2026-04-04T23:01:41+08:00
 slug: spring-data-jpa-vs-mybatis-plus
-title: Spring Data JPA、MyBatis-Plus、DDD 和 CQRS 串讲
+title: Spring Data JPA、MyBatis-Plus、DDD和CQRS串讲
 tags:
 - 对象关系映射
 - 领域驱动设计

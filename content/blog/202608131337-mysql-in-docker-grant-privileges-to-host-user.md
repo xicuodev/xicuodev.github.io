@@ -1,7 +1,7 @@
 ---
 date: 2026-08-13T13:37:00+08:00
 slug: mysql-in-docker-grant-privileges-to-host-user
-title: docker容器内的mysql给宿主用户授权
+title: Docker容器内的MySQL给宿主用户授权
 ---
 我的wiki站点的mysql数据库部署在docker容器中，虽然可以通过 `docker exec -it xw-mysql /bin/bash` 在容器内访问，但是在宿主机外访问要更为方便，于是引出本篇博文的问题：docker容器内的mysql如何给宿主用户授权。
 

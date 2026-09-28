@@ -1,7 +1,7 @@
 ---
 date: 2026-08-11T11:57:00+08:00
 slug: linux-exit-code-and-application-in-docker
-title: Linux程序退出码以及它在docker compose健康检查中的应用
+title: Linux程序退出码以及它在Docker Compose健康检查中的应用
 ---
 程序退出码 (exit code，也称为返回码或状态码) 是命令、程序或脚本执行完毕后，向其父进程（通常是 shell 程序）返回的一个整数，用于标识程序执行的结果成功或失败，0 表示成功，非 0 值表示失败，具体数值对应不同的错误类型。
 
