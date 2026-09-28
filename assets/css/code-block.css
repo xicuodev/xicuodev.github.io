@@ -1,0 +1,88 @@
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+:not(pre)>code {
+  padding: 0.1em 0.3em;
+  background-color: color-mix(in srgb, currentColor 10%, transparent);
+  font-size: 0.9em;
+}
+
+.code-block {
+  margin-block: 1.5em;
+  border-radius: 3px;
+  font-size: 0.875rem;
+}
+
+.code-header {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  padding: 0.3rem 0.5rem 0.3rem 1rem;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+  line-height: 1.5;
+}
+
+.code-lang {
+  flex: 1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  opacity: 0.7;
+}
+
+.code-btn {
+  padding: 0 0.4rem;
+  border: 0;
+  border-radius: 3px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  opacity: 0.7;
+}
+
+.code-btn:hover,
+.code-btn[aria-pressed="true"] {
+  opacity: 1;
+  background-color: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.code-block .highlight {
+  margin: 0;
+  border-radius: 0;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 0.75rem 0;
+  line-height: 1.6;
+}
+
+.code-block pre code {
+  padding: 0;
+  font-size: inherit;
+}
+
+:where(.code-block) :where(pre, code, .line, .ln) {
+  background-color: inherit;
+}
+
+.code-block .ln {
+  position: sticky;
+  left: 0;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+.code-block .cl {
+  padding-right: 1rem;
+}
+
+.code-block.is-wrapped pre {
+  width: auto;
+}
+
+.code-block.is-wrapped .cl {
+  flex: 1;
+  min-width: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

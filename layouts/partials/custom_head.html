@@ -1,0 +1,3 @@
+{{- $css := slice (resources.Get "css/chroma.css") (resources.Get "css/code-block.css")
+| resources.Concat "css/code-block.bundle.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">

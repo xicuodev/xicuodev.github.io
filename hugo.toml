@@ -23,7 +23,9 @@ ignoreErrors = ["error-disable-taxonomy"]
 # https://gohugo.io/configuration/markup/#highlight
 [markup]
   [markup.highlight]
-    style = "dracula"
+    # 输出 class 而不是内联 style，配色由 assets/css/chroma.css 提供（含深色模式），
+    # 换配色跑 scripts/gen-chroma.sh；class 模式下 style 选项不生效，故不设。
+    noClasses = false
     lineNos = true
     lineNumbersInTable = false
     codeFences = true

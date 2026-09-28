@@ -1,0 +1,13 @@
+{{- $lang := .Type | default "text" -}}
+{{- $html := transform.Highlight .Inner $lang .Options -}}
+{{- if not (strings.Contains $html "chroma") -}}
+{{- $html = transform.Highlight .Inner "text" .Options -}}
+{{- end -}}
+<div class="code-block chroma">
+  <div class="code-header">
+    <span class="code-lang">{{ .Type }}</span>
+    <button type="button" class="code-btn" data-action="wrap" aria-pressed="false">换行</button>
+    <button type="button" class="code-btn" data-action="copy" aria-live="polite">复制</button>
+  </div>
+  {{- $html | safeHTML -}}
+</div>
