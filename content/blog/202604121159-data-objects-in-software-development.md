@@ -2,10 +2,9 @@
 date: 2026-04-12T11:59:03+08:00
 slug: data-objects-in-software-development
 title: 软件开发中的数据载体：VO、DTO、DO 和 PO
-tags:
-- 软件开发
-- 领域驱动设计
+tags: [软件开发, 领域驱动设计]
 ---
+
 ## 1. 简单Java对象 POJO, Plain Old Java Object
 
 POJO 是所有数据载体的基础原型，指不继承特定类、不实现特定接口、不依赖特定框架、仅包含私有属性 getter/setter 方法、无业务逻辑的轻量 Java 类。

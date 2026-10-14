@@ -2,11 +2,9 @@
 date: 2026-04-04T23:01:41+08:00
 slug: spring-data-jpa-vs-mybatis-plus
 title: Spring Data JPA、MyBatis-Plus、DDD和CQRS串讲
-tags:
-- 对象关系映射
-- 领域驱动设计
-- 命令-查询职责分离
+tags: [对象关系映射, 领域驱动设计, 命令-查询职责分离]
 ---
+
 ## 1. Spring Data JPA与MyBatis-Plus的区别
 
 Spring Data JPA（下称 JPA）是以对象中心的（object-centric），它把 SQL 操作封装起来，你只管操作 Java 对象，它负责生成 SQL；MyBatis-Plus（下称 MP）是以 SQL 中心的（SQL-centric），它让你可以在 Java 代码中方便地构建复杂的查询逻辑，支持更细粒度的 SQL 控制。

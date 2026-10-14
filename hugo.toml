@@ -1,12 +1,8 @@
 baseURL = "https://blog.xicuodev.top/"
 locale = "zh-cn"
-title = "系错博客 XiCBlog"
+title = "系错博客"
 author = "xicuod"
 copyright = "copyright © 2026, xicuod."
-languageCode = "zh-CN"
-# theme = "ananke"
-
-## hugo-bearblog ##
 theme = "hugo-bearblog"
 
 # Generate a nice robots.txt for SEO
@@ -15,19 +11,20 @@ enableRobotsTXT = true
 # Generate "Bearblog"-like URLs !only!, see https://bearblog.dev/.
 disableKinds = ["taxonomy"]
 ignoreErrors = ["error-disable-taxonomy"]
+
 [permalinks]
-  blog = "/:slug/"
-  tags = "/tag/:slug"
+blog = "/:slug/"
+tags = "/tag/:slug"
 
 # Configure markup highlighter to match "Bearblog" aesthetics, see
 # https://gohugo.io/configuration/markup/#highlight
-[markup]
-  [markup.highlight]
-    # 输出 class 而不是内联 style，配色由 assets/css/chroma.css 提供（含深色模式），
-    # 换配色跑 scripts/gen-chroma.sh；class 模式下 style 选项不生效，故不设。
-    noClasses = false
-    lineNos = true
-    lineNumbersInTable = false
-    codeFences = true
-  [markup.goldmark.renderer]
-    unsafe = true
+[markup.highlight]
+# 输出 class 而不是内联 style，配色由 assets/css/chroma.css 提供（含深色模式），
+# 换配色跑 scripts/gen-chroma.sh；class 模式下 style 选项不生效，故不设。
+noClasses = false
+lineNos = true
+lineNumbersInTable = false
+codeFences = true
+
+[markup.goldmark.renderer]
+unsafe = true

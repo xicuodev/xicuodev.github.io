@@ -1,9 +1,8 @@
 ---
 date: 2026-09-26T12:00:00+08:00
 slug: chinese-tech-doc-style-guide
-title: 中文技术文档的写作规范
-tags:
-- 技术规范
+title: 【转载】阮一峰《中文技术文档的写作规范》
+tags: [技术规范]
 ---
 
 > 本文转载自阮一峰的技术文档《中文技术文档的写作规范》，GitHub仓库为 [ruanyf/document-style-guide](https://github.com/ruanyf/document-style-guide)，原文采用公共领域（public domain）许可。

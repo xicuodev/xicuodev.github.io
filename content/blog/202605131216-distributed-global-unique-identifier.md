@@ -2,11 +2,9 @@
 date: 2026-05-13T12:16:43+08:00
 slug: distributed-global-unique-identifier
 title: 分布式微服务系统的全局标识符
-tags:
-  - 分布式
-  - 微服务
-  - 全局标识符
+tags: [分布式, 微服务, 全局标识符]
 ---
+
 关于选用自增标识符(自增id)还是全局标识符(gid)：
 
 - 永远的单体应用：保持自增id。

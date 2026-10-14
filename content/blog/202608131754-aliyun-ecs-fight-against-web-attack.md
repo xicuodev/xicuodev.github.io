@@ -2,7 +2,9 @@
 date: 2026-08-13T17:54:00+08:00
 slug: aliyun-ecs-fight-against-web-attack
 title: 记一次阿里云ECS弹性云服务器遭遇攻击并解决的全过程
+tags: []
 ---
+
 > 8 月 13 日下午，我的服务器彻底失联了。起因只是一个放在 web 根目录下的 .git 目录。在之前的 4 天里，它被爬走了 11.25GB 流量，遭遇了 3 万次 SSH 爆破，最后因内存耗尽而宕机。
 
 事情的开端是本周一（2026年8月10号）我收到阿里云的短信，提示我：“您正在使用的产品`cdt_DataTransfer_public_cn`当前周期免费额度已使用80%。”我不以为意。结果次日我又收到一封阿里云的短信，提示我“免费额度已耗尽”。我甚至不知道CDT是什么，但至少“超出免费额度的额度是需要收费的”这点我还是懂的，但当时我正忙于自己的Java微服务项目，只是从手机上的阿里云APP简单扫了一眼——好吧，起码我知道CDT是Cloud Data Transfer“云数据传输”了。
@@ -56,12 +58,12 @@ Agent的排查按从外到内的顺序分四层推进：网络与进程现状 �
 
 在`/var/log/auth.log`中，密码错误共30,265次，时间跨度从8/9 00:48至8/13 11:13，安全组封禁SSH端口后戛然而止。爆破来源IP请求次数Top榜：
 
-| 来源 IP                  | 尝试次数 |
-| ------------------------ | -------- |
+| 来源 IP                    | 尝试次数 |
+| -------------------------- | -------- |
 | `51.222.47.156`            | 6,594    |
 | `192.253.248.216`          | 2,006    |
 | `144.225.6.182`            | 1,326    |
-| `91.92.47.x`/`45.156.87.x` | 各700+  |
+| `91.92.47.x`/`45.156.87.x` | 各700+   |
 
 SSH共连接成功43次，全部是我自己的公钥认证，密码登录成功0次。用`ssh-keygen -lf`核对登录指纹，可知所有公网来源的成功登录均使用我自己的ED25519密钥。爆破者四天里始终没能攻破SSH访问权限。
 
@@ -92,36 +94,38 @@ loose object 请求次数为 0。如果我曾对 LocalSettings.php 执行过 `gi
 Agent的解决方案：从Apache、MPM、`fail2ban`和SSH四个环节分别配置。
 
 1. Apache拒绝规则：新建`/etc/apache2/conf-available/security-hardening.conf`如下。启用后，`.git/HEAD` 404、`.fresnel.yml` 403、任意`.sql` 403，首页与静态资源不受影响。它与此前我手写的（笔者注：其实是前两次Agent做的工作）`RedirectMatch 404`规则互补：404 隐藏文件存在性，403 兜底其余点文件。
-	```conf
-	# 拒绝一切点文件（.gitignore、.env 等）
-	<FilesMatch "^\.">
-	    Require all denied
-	</FilesMatch>
-	
-	# 拒绝 VCS / secret 目录路径
-	<DirectoryMatch "/\.(git|svn|hg|env)(/|$)">
-	    Require all denied
-	</DirectoryMatch>
-	
-	# 拒绝敏感备份与凭证类扩展
-	<FilesMatch "\.(sql|dump|bak|old|swp|swo|key|pem|crt|csr|p12|pfx|der|sqlite|db)$">
-	    Require all denied
-	</FilesMatch>
-	```
+
+   ```conf
+   # 拒绝一切点文件（.gitignore、.env 等）
+   <FilesMatch "^\.">
+       Require all denied
+   </FilesMatch>
+
+   # 拒绝 VCS / secret 目录路径
+   <DirectoryMatch "/\.(git|svn|hg|env)(/|$)">
+       Require all denied
+   </DirectoryMatch>
+
+   # 拒绝敏感备份与凭证类扩展
+   <FilesMatch "\.(sql|dump|bak|old|swp|swo|key|pem|crt|csr|p12|pfx|der|sqlite|db)$">
+       Require all denied
+   </FilesMatch>
+   ```
+
 2. MPM调优：重启 Apache 后内存可用量回到 1G，负载归零。今后即使爬虫再来，20 个 worker 也压不垮这台机器。而且 `.git` 已经 404，不再存在 165MB 级别的响应。
-	| 参数                   | 默认 | 调优后 |
-	| ---------------------- | ---- | ------ |
-	| StartServers           | 5    | 3      |
-	| MinSpareServers        | 5    | 3      |
-	| MaxSpareServers        | 10   | 6      |
-	| MaxRequestWorkers      | 150  | 20     |
-	| MaxConnectionsPerChild | 0    | 1000   |
+   | 参数 | 默认 | 调优后 |
+   | ---------------------- | ---- | ------ |
+   | StartServers | 5 | 3 |
+   | MinSpareServers | 5 | 3 |
+   | MaxSpareServers | 10 | 6 |
+   | MaxRequestWorkers | 150 | 20 |
+   | MaxConnectionsPerChild | 0 | 1000 |
 3. `fail2ban` 三监狱：`sshd`：SSH 爆破自动封禁；`apache-auth`：反复触发拒绝路径（AH01630）的客户端自动封禁；`apache-git-crawler`：自定义过滤器，任何请求 `.git` 路径的 IP 触发 3 次即封 1 天。`/etc/fail2ban/filter.d/apache-git-crawler.conf`自定义过滤器写一行正则：用`fail2ban-regex`对历史日志回放验证，命中71,499条攻击记录。把Cloudflare回源段与内网IP加入白名单防止误封。
-	```conf
-	[Definition]
-	failregex = ^<HOST> .*"(?:GET|POST|HEAD|PUT) [^"]*\.git(?:[/?"\s]|$)
-	ignoreregex =
-	```
+   ```conf
+   [Definition]
+   failregex = ^<HOST> .*"(?:GET|POST|HEAD|PUT) [^"]*\.git(?:[/?"\s]|$)
+   ignoreregex =
+   ```
 4. SSH加固：`sshd_config`配置`PasswordAuthentication no`关闭密码验证和`PermitRootLogin prohibit-password`禁止root用户的密码登录。
 
 本次事件的总结和教训：`.git`目录永远别进web根；发布用`archive`导出而非`git clone`；Apache从默认全放行改为默认拒绝、白名单放行；小内存机器必须调MPM并换php-fpm；敏感配置不进git，进git的东西视为已公开；出事后先断网再排查；多看日志，日志是最诚实的目击者；配置安全组+`iptables`+`fail2ban`的每一层，形成纵深防御。

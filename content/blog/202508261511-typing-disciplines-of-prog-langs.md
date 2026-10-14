@@ -2,7 +2,9 @@
 date: 2025-08-26T15:11:00+08:00
 slug: typing-disciplines-of-prog-langs
 title: 编程语言的类型推断系统：动态类型与静态类型和强类型与弱类型
+tags: []
 ---
+
 本文参考[这篇知乎回答](https://www.zhihu.com/question/19918532/answer/23217475)，讨论的是[编程语言理论](https://zh.wikipedia.org/wiki/程式語言理論)([PLT, programming language theory](https://en.wikipedia.org/wiki/Programming_language_theory))的[类型系统](https://zh.wikipedia.org/wiki/類型系統)([type system](https://en.wikipedia.org/wiki/Type_system))中的类型推断系统[^1](typing disciplines)或者更常说的[类型推论](https://zh.wikipedia.org/wiki/类型推论)([type inference](https://en.wikipedia.org/wiki/Type_inference))。
 
 [^1]: 这个译名参考[这篇条目](https://www.wikidata.org/wiki/Property:P7078)。
@@ -18,24 +20,24 @@ title: 编程语言的类型推断系统：动态类型与静态类型和强类�
 
 使用方法：先看下面的具体解释，再看这张表，并结合所学编程语言知识对照理解。
 
-|       |                       强类型                        |                      弱类型                      |
-| :---: | :-------------------------------------------------: | :----------------------------------------------: |
-| 动态  |                    Python, Ruby                     |            JavaScript, PHP, VBScript             |
-| 静态  | Java, C++, C#, Rust, Go,<br/>Swift, Kotlin, Haskell | C/C++(底层指针,`void*`,<br />`union`), ASM(汇编) |
+|      |                       强类型                        |                      弱类型                      |
+| :--: | :-------------------------------------------------: | :----------------------------------------------: |
+| 动态 |                    Python, Ruby                     |            JavaScript, PHP, VBScript             |
+| 静态 | Java, C++, C#, Rust, Go,<br/>Swift, Kotlin, Haskell | C/C++(底层指针,`void*`,<br />`union`), ASM(汇编) |
 
 ## 2. 动态类型语言 Dynamically Typed Language
 
 变量的类型是在运行时确定的，不需要显式声明。例如 ECMAScript (JavaScript)、Ruby、Python 和 PHP 就是典型的动态类型语言，脚本语言如 VBScript 也多少属于动态类型语言。
 
-* 优点：方便阅读，不需要写非常多的类型相关的代码。
-* 缺点：不方便调试，命名不规范时会造成读不懂，不利于理解等。
+- 优点：方便阅读，不需要写非常多的类型相关的代码。
+- 缺点：不方便调试，命名不规范时会造成读不懂，不利于理解等。
 
 ## 3. 静态类型语言 Statically Typed Language
 
 变量的类型在编译时（或声明时）确定，需要显式声明。C/C++ 是静态类型语言的典型代表，其他还有 C#、Java 等。
 
-* 优点：结构非常规范，便于调试，方便类型安全。
-* 缺点：为此需要写更多类型相关代码，不便于阅读、不清晰明了。
+- 优点：结构非常规范，便于调试，方便类型安全。
+- 缺点：为此需要写更多类型相关代码，不便于阅读、不清晰明了。
 
 ## 4. 强类型定义语言 Explicit type conversion
 

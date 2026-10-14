@@ -2,6 +2,7 @@
 date: 2026-07-23T15:42:00+08:00
 slug: jenv-java-versions-manager
 title: JDK版本管理CLI“jEnv”在macOS上的一些常见用例
+tags: []
 ---
 
 macos列出所有当前系统识别到的JVM路径：
