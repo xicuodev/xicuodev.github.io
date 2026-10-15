@@ -2,7 +2,7 @@
 date: 2026-02-22T21:40:32+08:00
 slug: character-encoding
 title: 字符编码：ASCII、GB2312、GBK、GB18030和Unicode字符集及其编码格式
-tags: []
+tags: [字符编码]
 ---
 
 ## 1. 字符的分类与字符集

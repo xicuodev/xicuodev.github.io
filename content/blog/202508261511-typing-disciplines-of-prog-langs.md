@@ -2,7 +2,7 @@
 date: 2025-08-26T15:11:00+08:00
 slug: typing-disciplines-of-prog-langs
 title: 编程语言的类型推断系统：动态类型与静态类型和强类型与弱类型
-tags: []
+tags: [类型推断]
 ---
 
 本文参考[这篇知乎回答](https://www.zhihu.com/question/19918532/answer/23217475)，讨论的是[编程语言理论](https://zh.wikipedia.org/wiki/程式語言理論)([PLT, programming language theory](https://en.wikipedia.org/wiki/Programming_language_theory))的[类型系统](https://zh.wikipedia.org/wiki/類型系統)([type system](https://en.wikipedia.org/wiki/Type_system))中的类型推断系统[^1](typing disciplines)或者更常说的[类型推论](https://zh.wikipedia.org/wiki/类型推论)([type inference](https://en.wikipedia.org/wiki/Type_inference))。

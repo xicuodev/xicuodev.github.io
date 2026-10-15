@@ -2,7 +2,7 @@
 date: 2026-03-06T22:56:43+08:00
 slug: spring-autowired-vs-resource
 title: Spring @Autowired和@Resource的区别
-tags: [依赖注入]
+tags: [Spring, 依赖注入]
 ---
 
 `@Autowired` 和 `@Resource` 都是用来依赖注入的注解，但不同的是，它们：
